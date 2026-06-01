@@ -1,1 +1,1 @@
-# beimgoods landing page
+# Beim Goods landing page
