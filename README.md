@@ -1,1 +1,1 @@
-# beimgoods.com
+# beimgoods landing page
