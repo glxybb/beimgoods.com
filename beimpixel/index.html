@@ -9,7 +9,7 @@
 <!-- Security headers (GitHub Pages sets some; these cover what <meta> can) -->
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Content-Security-Policy"
-  content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://storage.googleapis.com; frame-ancestors 'none';">
+  content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://storage.googleapis.com; frame-ancestors 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
 
@@ -208,7 +208,7 @@
     <h1><span>beim</span>pixel</h1>
     <p>claim a pixel · $1.00/px · 24h lease</p>
   </div>
-  
+
   <div class="grid-frame">
     <div class="grid" id="grid"></div>
   </div>
@@ -308,13 +308,8 @@
 // ══════════════════════════════════════════════════════════
 //  CONFIG — update these two values for your Firebase project
 // ══════════════════════════════════════════════════════════
-var PIXELS_JSON_URL = "https://storage.googleapis.com/beimpixel.firebasestorage.app/pixels.json";
-//var STRIPE_LINK     = "https://buy.stripe.com/00wbJ1eeP4Z6ctrfEsdwc02";
-
-var STRIPE_LINK     = "https://buy.stripe.com/test_eVq9AT8Uv8bi2SRcsgdwc00";
-
-
-
+var PIXELS_JSON_URL = "https://storage.googleapis.com/YOUR_PROJECT_ID.firebasestorage.app/pixels.json";
+var STRIPE_LINK     = "https://buy.stripe.com/00wbJ1eeP4Z6ctrfEsdwc02";
 // ══════════════════════════════════════════════════════════
 
 var POLL_MS = 5 * 60 * 1000; // refresh every 5 minutes
