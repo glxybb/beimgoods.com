@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="/BPfavicon16.png" type="image/png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>beimpixel — claim a pixel</title>
@@ -14,6 +13,7 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
 
+<link rel="icon" type="image/png" sizes="16x16" href="BPfavicon16.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -201,6 +201,17 @@
 
   .step { display: none; }
   .step.active { display: block; }
+
+  @media (max-width: 500px) {
+    .grid {
+      grid-template-columns: repeat(32, 10px);
+      grid-template-rows: repeat(32, 10px);
+    }
+    .px { width: 10px; height: 10px; }
+    .header { margin-bottom: 20px; }
+    .header h1 { font-size: 22px; }
+    body { padding: 20px 12px 40px; }
+  }
 </style>
 </head>
 <body>
@@ -312,7 +323,8 @@
 var PIXELS_JSON_URL = "https://storage.googleapis.com/YOUR_PROJECT_ID.firebasestorage.app/pixels.json";
 //var STRIPE_LINK     = "https://buy.stripe.com/00wbJ1eeP4Z6ctrfEsdwc02";
 
-  var STRIPE_LINK     = "https://buy.stripe.com/test_eVq9AT8Uv8bi2SRcsgdwc00";
+var STRIPE_LINK     = "https://buy.stripe.com/test_eVq9AT8Uv8bi2SRcsgdwc00";
+
 
 // ══════════════════════════════════════════════════════════
 
