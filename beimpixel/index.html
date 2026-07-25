@@ -39,13 +39,13 @@
   }
 
   body {
-    background: var(--bg); color: var(--text-2); font-family: var(--sans);
+    background: var(--bg); color: var(--text-2); font-family: var(--mono);
     min-height: 100vh; display: flex; flex-direction: column;
     align-items: center; padding: 32px 16px 64px;
     -webkit-font-smoothing: antialiased;
   }
 
-  .header { text-align: center; margin-bottom: 32px; }
+  .header { text-align: center; margin-bottom: 40px; }
   .header h1 {
     font-size: 28px; font-weight: 600; font-family: var(--mono);
     color: var(--text); letter-spacing: -0.5px;
@@ -162,14 +162,14 @@
   .btn {
     background: var(--accent); color: white; border: none; border-radius: 10px;
     padding: 14px 24px; font-size: 15px; font-weight: 600; cursor: pointer;
-    width: 100%; font-family: var(--sans); transition: background 0.2s, transform 0.1s;
+    width: 100%; font-family: var(--mono); transition: background 0.2s, transform 0.1s;
   }
   .btn:hover { background: var(--accent-hover); }
   .btn:active { transform: scale(0.98); }
   .btn-outline {
     background: transparent; color: var(--text-dim); border: 1.5px solid var(--border-2);
     border-radius: 10px; padding: 12px 24px; font-size: 14px; font-weight: 500;
-    cursor: pointer; width: 100%; font-family: var(--sans); transition: all 0.2s; margin-top: 10px;
+    cursor: pointer; width: 100%; font-family: var(--mono); transition: all 0.2s; margin-top: 10px;
   }
   .btn-outline:hover { border-color: var(--text-dimmer); color: var(--text-2); }
 
@@ -202,15 +202,176 @@
   .step { display: none; }
   .step.active { display: block; }
 
+  /* ── Gallery Placard ── */
+  .placard-wrapper {
+    margin-top: 40px;
+    -webkit-perspective: 1200px;
+    perspective: 1200px;
+    width: 100%;
+    max-width: 460px;
+  }
+  .placard {
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    transition: -webkit-transform 1.2s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .placard.flipped {
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+  }
+  .placard-front, .placard-back {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 4px;
+    min-height: 340px;
+  }
+  .placard-front {
+    background: #f3f0ff;
+    border: 1px solid #e4ddf4;
+    padding: 24px 28px;
+    color: #1a1020;
+  }
+  .placard-back {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+    background: #f3f0ff;
+    border: 1px solid #e4ddf4;
+    padding: 28px 32px;
+    color: #1a1020;
+    min-height: 340px;
+  }
+  .placard-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #5a4080;
+    margin-bottom: 20px;
+  }
+  .placard-steps {
+    list-style: none;
+    counter-reset: steps;
+  }
+  .placard-steps li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0;
+    font-family: var(--mono);
+    font-size: 14px;
+    color: #3a2860;
+    transition: color 0.3s;
+    border-bottom: none;
+  }
+  .placard-steps li:last-child {
+    border-bottom: none;
+  }
+  .placard-steps li.done {
+    color: #1a1020;
+  }
+  .step-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: none;
+    background: #e8e2f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: #5a4080;
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  .placard-steps li.done .step-num {
+    background: #dcd4f2;
+    color: #6b50b0;
+  }
+  .step-reveal {
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .step-reveal:hover {
+    color: #1a1020;
+  }
+  .step-reveal.locked {
+    opacity: 0.4;
+    cursor: default;
+  }
+  .step-reveal.locked:hover {
+    color: var(--text-dim);
+  }
+
+  /* Placard back */
+  .placard-back-title {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: #5a4080;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+  .placard-back p {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #2a1e40;
+    margin-bottom: 14px;
+  }
+  .placard-back p:last-of-type {
+    margin-bottom: 0;
+    font-style: italic;
+    color: #5a4080;
+  }
+  .placard-back .placard-flip-back {
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: #7a68a0;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s;
+  }
+  .placard-back .placard-flip-back:hover {
+    color: #3a2860;
+  }
+
+  /* Footer */
+  .gallery-footer {
+    margin-top: 32px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dimmer);
+    display: flex;
+    gap: 16px;
+  }
+  .gallery-footer a {
+    color: var(--text-dim);
+    text-decoration: none;
+  }
+  .gallery-footer a:hover {
+    color: var(--text-2);
+  }
+
   @media (max-width: 500px) {
     .grid {
       grid-template-columns: repeat(32, 10px);
       grid-template-rows: repeat(32, 10px);
     }
     .px { width: 10px; height: 10px; }
-    .header { margin-bottom: 20px; }
+    .header { margin-bottom: 28px; }
     .header h1 { font-size: 22px; }
     body { padding: 20px 12px 40px; }
+    .placard-wrapper { margin-top: 28px; }
+    .placard-front { padding: 20px 22px; }
+    .placard-back { padding: 22px 24px; }
+    .placard-back p { font-size: 13px; }
+    .placard-front, .placard-back { min-height: 300px; }
   }
 </style>
 </head>
@@ -227,9 +388,49 @@
 
   <div class="hover-info" id="hover-info"></div>
 
-  <div style="margin-top: 32px; font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); display: flex; gap: 16px;">
-    <a href="tos.html" style="color: var(--text-dim); text-decoration: none;">Terms of Service</a>
-    <a href="privacy.html" style="color: var(--text-dim); text-decoration: none;">Privacy Policy</a>
+  <!-- Gallery Placard -->
+  <div class="placard-wrapper">
+    <div class="placard" id="placard">
+
+      <!-- Front: Instructions -->
+      <div class="placard-front">
+        <div class="placard-title">Instructions</div>
+        <ul class="placard-steps">
+          <li id="pstep-1">
+            <span class="step-num">1</span>
+            <span>Select a pixel</span>
+          </li>
+          <li id="pstep-2">
+            <span class="step-num">2</span>
+            <span>Change the pixel's color</span>
+          </li>
+          <li id="pstep-3" class="step-reveal" onclick="revealPlacard()">
+            <span class="step-num">3</span>
+            <span>Reveal placard ↓</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Back: The message -->
+      <div class="placard-back">
+        <div class="placard-back-title">beimpixel</div>
+        <p>A 32×32 canvas, open to anyone. One dollar changes one pixel for 24 hours.</p>
+        <p>One pixel is a small act. Alone, each person pulls the canvas in a different direction. Over time, the painting drifts into noise.</p>
+        <p>But when a group coordinates, they compose something new, e.g. a painting, a message, a shared vision. What no individual can create alone, a collective can.</p>
+        <p>Alone, we make marks. Together, we build vision.</p>
+        <div class="placard-flip-back" onclick="unrevealPlacard()">↑ flip back</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="margin-top: 28px;">
+    <a href="https://beimgoods.com" style="font-family: var(--mono); font-size: 12px; color: var(--accent); text-decoration: none; transition: opacity 0.2s;">← return to beimgoods.com</a>
+  </div>
+
+  <div class="gallery-footer">
+    <a href="tos.html">Terms of Service</a>
+    <a href="privacy.html">Privacy Policy</a>
   </div>
 
   <!-- Modal -->
@@ -325,20 +526,20 @@
 // ── Clickjacking protection ──
 // GitHub Pages cannot set X-Frame-Options header and browsers
 // ignore frame-ancestors in CSP meta tags, so we use a frame-buster.
-if (window.top !== window.self) {
-  document.body.innerHTML = "";
-  window.top.location = window.self.location;
+try {
+  if (window.top !== window.self) {
+    window.top.location = window.self.location; // throws in sandboxed iframes
+    document.body.innerHTML = ""; // only reached if navigation succeeded
+  }
+} catch (e) {
+  // Sandboxed iframe (e.g. preview) — page continues normally
 }
 
 // ══════════════════════════════════════════════════════════
 //  CONFIG — update these two values for your Firebase project
 // ══════════════════════════════════════════════════════════
 var PIXELS_JSON_URL = "https://storage.googleapis.com/beimpixel.firebasestorage.app/pixels.json";
-
-
 var STRIPE_LINK     = "https://buy.stripe.com/00wbJ1eeP4Z6ctrfEsdwc02";
-
-
 // ══════════════════════════════════════════════════════════
 
 var POLL_MS = 5 * 60 * 1000; // refresh every 5 minutes
@@ -464,6 +665,9 @@ function openModal(i) {
   var col = i % G;
   var coordText = "(" + row + ", " + col + ")";
 
+  // Mark placard step 1
+  markPlacardStep(1);
+
   // If pixel is already rented, show occupied message
   if (paidPixels[String(i)]) {
     document.getElementById("occupied-coord").textContent = coordText;
@@ -504,11 +708,12 @@ document.getElementById("color-input").addEventListener("input", function(e) {
   document.getElementById("color-hex").textContent = selectedColor.toUpperCase();
   document.getElementById("preview-new").style.backgroundColor = selectedColor;
   buildQuickColors();
+  markPlacardStep(2);
 });
 
 function buildQuickColors() {
   var container = document.getElementById("quick-colors");
-  container.innerHTML = "";
+  while (container.firstChild) container.removeChild(container.firstChild);
   QUICK.forEach(function(c) {
     var el = document.createElement("div");
     el.className = "qc" + (c === selectedColor ? " active" : "") + (c === "#000000" ? " dark" : "");
@@ -519,6 +724,7 @@ function buildQuickColors() {
       document.getElementById("color-hex").textContent = c.toUpperCase();
       document.getElementById("preview-new").style.backgroundColor = c;
       buildQuickColors();
+      markPlacardStep(2);
     });
     container.appendChild(el);
   });
@@ -558,6 +764,36 @@ document.getElementById("overlay").addEventListener("click", function(e) {
 buildGrid();
 fetchPixels();
 setInterval(fetchPixels, POLL_MS);
+
+// ── Placard ──
+var placardStep1 = false;
+var placardStep2 = false;
+
+function markPlacardStep(n) {
+  if (n === 1 && !placardStep1) {
+    placardStep1 = true;
+    document.getElementById("pstep-1").classList.add("done");
+  }
+  if (n === 2 && !placardStep2) {
+    placardStep2 = true;
+    document.getElementById("pstep-2").classList.add("done");
+  }
+  if (placardStep1 && placardStep2) {
+    document.getElementById("pstep-3").classList.add("done");
+  }
+}
+
+function revealPlacard() {
+  // Mark all steps as done on reveal
+  document.getElementById("pstep-1").classList.add("done");
+  document.getElementById("pstep-2").classList.add("done");
+  document.getElementById("pstep-3").classList.add("done");
+  document.getElementById("placard").classList.add("flipped");
+}
+
+function unrevealPlacard() {
+  document.getElementById("placard").classList.remove("flipped");
+}
 </script>
 </body>
 </html>
