@@ -322,11 +322,26 @@
   </div>
 
 <script>
+// ── Clickjacking protection ──
+// GitHub Pages cannot set X-Frame-Options header and browsers
+// ignore frame-ancestors in CSP meta tags, so we use a frame-buster.
+if (window.top !== window.self) {
+  document.body.innerHTML = "";
+  window.top.location = window.self.location;
+}
+
 // ══════════════════════════════════════════════════════════
 //  CONFIG — update these two values for your Firebase project
 // ══════════════════════════════════════════════════════════
 var PIXELS_JSON_URL = "https://storage.googleapis.com/beimpixel.firebasestorage.app/pixels.json";
-var STRIPE_LINK     = "https://buy.stripe.com/00wbJ1eeP4Z6ctrfEsdwc02";
+
+
+//var STRIPE_LINK     = "https://buy.stripe.com/00wbJ1eeP4Z6ctrfEsdwc02";
+
+var STRIPE_LINK     = "https://buy.stripe.com/test_eVq9AT8Uv8bi2SRcsgdwc00";
+
+
+
 // ══════════════════════════════════════════════════════════
 
 var POLL_MS = 5 * 60 * 1000; // refresh every 5 minutes
@@ -378,14 +393,12 @@ function buildGrid() {
 
 function renderGrid() {
   var grid = document.getElementById("grid");
-  var active = 0;
   for (var i = 0; i < TOTAL; i++) {
     var el = grid.children[i];
     var paid = paidPixels[String(i)];
-    if (paid) {
+    if (paid && /^#[0-9a-fA-F]{6}$/.test(paid)) {
       el.style.backgroundColor = paid;
       el.className = "px paid";
-      active++;
     } else {
       el.style.backgroundColor = DEFAULTS[i];
       el.className = "px";
