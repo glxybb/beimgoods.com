@@ -204,11 +204,11 @@
 
   /* ── Gallery Placard ── */
   .placard-wrapper {
-    margin-top: 40px;
+    margin-top: 16px;
     -webkit-perspective: 1200px;
     perspective: 1200px;
-    width: 100%;
-    max-width: 460px;
+    width: 454px;
+    max-width: 100%;
   }
   .placard {
     position: relative;
@@ -218,31 +218,31 @@
                 transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .placard.flipped {
-    -webkit-transform: rotateX(180deg);
-    transform: rotateX(180deg);
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
   }
   .placard-front, .placard-back {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 4px;
-    min-height: 340px;
+    min-height: 380px;
   }
   .placard-front {
-    background: #f3f0ff;
-    border: 1px solid #e4ddf4;
+    background: #edf0ff;
+    border: 1px solid #dde4f4;
     padding: 24px 28px;
     color: #1a1020;
   }
   .placard-back {
     position: absolute;
     top: 0; left: 0; right: 0;
-    -webkit-transform: rotateX(180deg);
-    transform: rotateX(180deg);
-    background: #f3f0ff;
-    border: 1px solid #e4ddf4;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    background: #edf0ff;
+    border: 1px solid #dde4f4;
     padding: 28px 32px;
     color: #1a1020;
-    min-height: 340px;
+    min-height: 380px;
   }
   .placard-title {
     font-family: var(--mono);
@@ -262,7 +262,7 @@
     gap: 14px;
     padding: 10px 0;
     font-family: var(--mono);
-    font-size: 14px;
+    font-size: 13px;
     color: #3a2860;
     transition: color 0.3s;
     border-bottom: none;
@@ -367,11 +367,10 @@
     .header { margin-bottom: 28px; }
     .header h1 { font-size: 22px; }
     body { padding: 20px 12px 40px; }
-    .placard-wrapper { margin-top: 28px; }
+    .placard-wrapper { width: 326px; margin-top: 28px; }
     .placard-front { padding: 20px 22px; }
     .placard-back { padding: 22px 24px; }
     .placard-back p { font-size: 13px; }
-    .placard-front, .placard-back { min-height: 300px; }
   }
 </style>
 </head>
@@ -406,7 +405,7 @@
           </li>
           <li id="pstep-3" class="step-reveal" onclick="revealPlacard()">
             <span class="step-num">3</span>
-            <span>Reveal placard ↓</span>
+            <span>Reveal placard ↻</span>
           </li>
         </ul>
       </div>
@@ -418,7 +417,7 @@
         <p>One pixel is a small act. Alone, each person pulls the canvas in a different direction. Over time, the painting drifts into noise.</p>
         <p>But when a group coordinates, they compose something new, e.g. a painting, a message, a shared vision. What no individual can create alone, a collective can.</p>
         <p>Alone, we make marks. Together, we build vision.</p>
-        <div class="placard-flip-back" onclick="unrevealPlacard()">↑ flip back</div>
+        <div class="placard-flip-back" onclick="unrevealPlacard()">↺ flip back</div>
       </div>
 
     </div>
