@@ -442,6 +442,7 @@
       margin-bottom: 8px;
     }
     .kit-includes-item {
+      display: flex;
       font-size: 0.72rem; font-weight: 300;
       color: rgba(0, 0, 0, 0.6);
       padding: 4px 0; align-items: center; gap: 8px;
@@ -465,6 +466,30 @@
     .kit-price-note {
       font-size: 0.65rem; font-weight: 300;
       color: rgba(0, 0, 0, 0.4);
+    }
+
+    /* ── WHOLESALE / PARTNER LINE ── */
+    .kit-wholesale {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      width: 100%;
+      margin-top: 16px;
+      padding: 10px 16px;
+      background: rgba(91, 45, 145, 0.10);
+      border: 1px solid rgba(91, 45, 145, 0.28);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(91, 45, 145, 0.95);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .kit-wholesale:hover {
+      background: rgba(91, 45, 145, 0.18);
+      border-color: rgba(91, 45, 145, 0.45);
+    }
+    .kit-wholesale svg {
+      width: 13px; height: 13px; flex-shrink: 0; opacity: 0.85;
     }
 
     .kit-buy-btn {
@@ -562,8 +587,7 @@
 
         <div class="kit-price-row">
           <span class="kit-price">$135</span>
-          <span class="kit-price-note">Free shipping &middot; Email for wholesale price</span>
-  
+          <span class="kit-price-note">Free shipping</span>
         </div>
 
         <!-- STRIPE PAYMENT LINK -->
@@ -572,6 +596,16 @@
           Order Kit &rarr;
         </a>
         <div class="kit-shipping-note">Ships to US &middot; Secure checkout via Stripe</div>
+
+        <a class="kit-wholesale"
+           href="mailto:info@beimgoods.com?subject=Wholesale%20%26%20partner%20pricing">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-10 6L2 7"/>
+          </svg>
+          Email for wholesale &amp; partner price
+        </a>
       </div>
     </div>
   </div>
