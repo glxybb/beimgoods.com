@@ -7,27 +7,27 @@
   <title>TTS Livestream Kit — BEIM GOODS</title>
   <meta name="description" content="The BEIM GOODS TTS Livestream Kit: wireless earbuds, quick start guide, and the Beim Goods TTS software. Inspect every part of the kit in 3D. $135, free shipping to the US." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://beimgoods.com/livestream-kit/" />
+  <link rel="canonical" href="https://beimgoods.com/ttskit/" />
   <meta property="og:type" content="product" />
   <meta property="og:title" content="TTS Livestream Kit — BEIM GOODS" />
   <meta property="og:description" content="Wireless earbuds paired with Beim Goods TTS software. Hear every chat comment read aloud, hands free. $135, free shipping." />
-  <meta property="og:url" content="https://beimgoods.com/livestream-kit/" />
+  <meta property="og:url" content="https://beimgoods.com/ttskit/" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Product",
-    "@id": "https://beimgoods.com/livestream-kit/#product",
+    "@id": "https://beimgoods.com/ttskit/#product",
     "name": "BEIM GOODS TTS Livestream Kit",
     "description": "Wireless earbuds paired with TTS software for livestream sellers. Hear every chat comment read aloud, hands free. Includes earbuds with charging case, quick start guide, and Beim Goods TTS software.",
     "brand": { "@type": "Organization", "name": "BEIM GOODS", "url": "https://beimgoods.com" },
-    "url": "https://beimgoods.com/livestream-kit/",
+    "url": "https://beimgoods.com/ttskit/",
     "offers": {
       "@type": "Offer",
       "price": "135.00",
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock",
-      "url": "https://beimgoods.com/livestream-kit/",
+      "url": "https://beimgoods.com/ttskit/",
       "shippingDetails": {
         "@type": "OfferShippingDetails",
         "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
@@ -398,8 +398,7 @@
         <div class="stage">
           <model-viewer
             id="kit-viewer"
-            src="/models/beim-goods-livestream-kit-packaging.glb"
-            poster="/models/poster-packaging.webp"
+            src="/ttskit/beim-goods-livestream-kit-packaging.glb"
             alt="The BEIM GOODS TTS Livestream Kit packaging, shown in 3D"
             camera-controls
             touch-action="pan-y"
@@ -432,24 +431,21 @@
 
         <div class="parts" role="tablist" aria-label="Choose a part of the kit to view">
           <button class="part" role="tab" aria-selected="true"
-                  data-src="/models/beim-goods-livestream-kit-packaging.glb"
-                  data-poster="/models/poster-packaging.webp"
+                  data-src="/ttskit/beim-goods-livestream-kit-packaging.glb"
                   data-alt="The full TTS Livestream Kit packaging, shown in 3D">
             <span class="part-idx">01</span>
             <span class="part-name">Kit packaging</span>
           </button>
 
           <button class="part" role="tab" aria-selected="false"
-                  data-src="/models/beim-goods-earbuds-box.glb"
-                  data-poster="/models/poster-earbuds.webp"
+                  data-src="/ttskit/beim-goods-earbuds-box.glb"
                   data-alt="The wireless earbuds box from the TTS Livestream Kit, shown in 3D">
             <span class="part-idx">02</span>
             <span class="part-name">Earbuds box</span>
           </button>
 
           <button class="part" role="tab" aria-selected="false"
-                  data-src="/models/beim-goods-quick-start-booklet.glb"
-                  data-poster="/models/poster-booklet.webp"
+                  data-src="/ttskit/beim-goods-quick-start-booklet.glb"
                   data-alt="The quick start guide booklet from the TTS Livestream Kit, shown in 3D">
             <span class="part-idx">03</span>
             <span class="part-name">Quick start guide</span>
@@ -558,7 +554,6 @@
           t.setAttribute('aria-selected', String(t === tab));
         });
         viewer.setAttribute('src',    tab.dataset.src);
-        viewer.setAttribute('poster', tab.dataset.poster);
         viewer.setAttribute('alt',    tab.dataset.alt);
         hint.classList.remove('hidden');
       }
