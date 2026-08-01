@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/BGfavicon16.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TTS Livestream Kit — BEIM GOODS</title>
+  <meta name="description" content="The BEIM GOODS TTS Livestream Kit: wireless earbuds, quick start guide, and the Beim Goods TTS software. Inspect every part of the kit in 3D. $135, free shipping to the US." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://beimgoods.com/livestream-kit/" />
+  <meta property="og:type" content="product" />
+  <meta property="og:title" content="TTS Livestream Kit — BEIM GOODS" />
+  <meta property="og:description" content="Wireless earbuds paired with Beim Goods TTS software. Hear every chat comment read aloud, hands free. $135, free shipping." />
+  <meta property="og:url" content="https://beimgoods.com/livestream-kit/" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": "https://beimgoods.com/livestream-kit/#product",
+    "name": "BEIM GOODS TTS Livestream Kit",
+    "description": "Wireless earbuds paired with TTS software for livestream sellers. Hear every chat comment read aloud, hands free. Includes earbuds with charging case, quick start guide, and Beim Goods TTS software.",
+    "brand": { "@type": "Organization", "name": "BEIM GOODS", "url": "https://beimgoods.com" },
+    "url": "https://beimgoods.com/livestream-kit/",
+    "offers": {
+      "@type": "Offer",
+      "price": "135.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://beimgoods.com/livestream-kit/",
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
+        "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" }
+      }
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!--
+    Self-hosted <model-viewer>. Download once and drop it next to this file:
+      https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js
+    Self-hosting keeps a third-party CDN out of your visitors' request path.
+  -->
+  <script type="module" src="/model-viewer.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:        rgba(200,160,255,1);
+      --purple-dim:    rgba(200,160,255,0.12);
+      --purple-border: rgba(200,160,255,0.22);
+      --amber:         rgba(255,200,100,1);
+      --amber-dim:     rgba(255,200,100,0.10);
+      --amber-border:  rgba(255,200,100,0.22);
+      --ink:           #050508;
+      --stage:         #12101c;
+      --hair:          rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--ink);
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100%;
+    }
+
+    a { color: inherit; }
+    :focus-visible {
+      outline: 2px solid var(--purple);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ── ATMOSPHERE ── */
+    .bg {
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("https://raw.githubusercontent.com/glxybb/beimgoods.com/main/beimgoodsBackground.png");
+      background-size: cover; background-position: center top;
+      filter: brightness(0.22) saturate(1.05);
+    }
+    .bg-veil {
+      position: fixed; inset: 0; z-index: 1;
+      background: linear-gradient(180deg,
+        rgba(5,5,8,0.55) 0%,
+        rgba(5,5,8,0.88) 45%,
+        rgba(5,5,8,0.98) 100%);
+    }
+
+    .shell { position: relative; z-index: 2; }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+      padding: 1.15rem clamp(1.1rem, 5vw, 3.2rem);
+      border-bottom: 1px solid var(--hair);
+      backdrop-filter: blur(10px);
+      background: rgba(5,5,8,0.5);
+      position: sticky; top: 0; z-index: 20;
+    }
+    .brand { text-decoration: none; line-height: 1; }
+    .brand-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem; font-weight: 800;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(255,255,255,0.92); display: block;
+    }
+    .brand-tagline {
+      font-size: 0.52rem; font-weight: 300;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      display: block; margin-top: 0.28rem;
+    }
+    .topbar-back {
+      font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.34); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .topbar-back:hover { color: rgba(255,255,255,0.7); }
+
+    /* ── LAYOUT ── */
+    .product {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: clamp(1.6rem, 4vw, 3.4rem);
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: clamp(1.6rem, 4vw, 3rem) clamp(1.1rem, 5vw, 3.2rem) 4rem;
+      align-items: start;
+    }
+
+    /* ══════════════════════════════
+       3D STAGE
+       ══════════════════════════════ */
+    .stage-col { position: sticky; top: 5.4rem; }
+
+    .stage {
+      position: relative;
+      background:
+        radial-gradient(120% 90% at 50% 12%, rgba(200,160,255,0.14) 0%, transparent 62%),
+        var(--stage);
+      border: 1px solid var(--purple-border);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    model-viewer {
+      display: block;
+      width: 100%;
+      height: clamp(300px, 48vh, 460px);
+      background: transparent;
+      --poster-color: transparent;
+      --progress-bar-color: var(--purple);
+      --progress-mask: transparent;
+    }
+
+    /* Shown when WebGL or the script is unavailable */
+    .stage-fallback {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; height: 100%; padding: 2rem; text-align: center;
+    }
+    .stage-fallback img { max-width: 78%; border-radius: 10px; }
+    .stage-fallback p {
+      font-size: 0.66rem; font-weight: 300; line-height: 1.6;
+      color: rgba(255,255,255,0.42);
+    }
+
+    .drag-hint {
+      position: absolute; left: 50%; bottom: 14px;
+      transform: translateX(-50%);
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.55rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.42);
+      background: rgba(5,5,8,0.6);
+      border: 1px solid var(--hair);
+      padding: 0.3rem 0.8rem; border-radius: 100px;
+      pointer-events: none;
+      transition: opacity 0.45s ease;
+    }
+    .drag-hint svg { width: 12px; height: 12px; opacity: 0.7; }
+    .drag-hint.hidden { opacity: 0; }
+
+    /* ── MODEL SWITCHER ── */
+    .parts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .part {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 3px;
+      padding: 0.65rem 0.7rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--hair);
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .part:hover { background: rgba(200,160,255,0.07); border-color: rgba(200,160,255,0.2); }
+    .part[aria-selected="true"] {
+      background: var(--purple-dim);
+      border-color: var(--purple-border);
+    }
+    .part-idx {
+      font-size: 0.5rem; font-weight: 600;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.26);
+    }
+    .part[aria-selected="true"] .part-idx { color: rgba(200,160,255,0.7); }
+    .part-name {
+      font-size: 0.63rem; font-weight: 500; line-height: 1.35;
+      color: rgba(255,255,255,0.55);
+    }
+    .part[aria-selected="true"] .part-name { color: rgba(255,255,255,0.95); }
+
+    /* ══════════════════════════════
+       DETAIL COLUMN
+       ══════════════════════════════ */
+    .product-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+      font-weight: 800; line-height: 1.06; letter-spacing: -0.015em;
+      background: linear-gradient(135deg, #fff 0%, rgba(200,160,255,0.78) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.9rem;
+    }
+
+    .product-sub {
+      font-size: 0.86rem; font-weight: 300; line-height: 1.75;
+      color: rgba(255,255,255,0.46);
+      max-width: 42ch;
+      margin-bottom: 1.8rem;
+    }
+
+    /* ── PRICE ── */
+    .price-row {
+      display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.55rem 0.9rem;
+      margin-top: 2.2rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--hair);
+      margin-bottom: 1.4rem;
+    }
+    .price {
+      font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .price-note {
+      font-size: 0.68rem; font-weight: 300;
+      color: rgba(255,255,255,0.38);
+    }
+
+    /* ── CTAs ── */
+    .buy {
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      width: 100%;
+      padding: 1rem 1.4rem;
+      background: linear-gradient(135deg, rgba(140,84,205,0.95), rgba(91,45,145,0.85));
+      border: 1px solid rgba(170,120,235,0.55);
+      border-radius: 100px;
+      color: #fff;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      text-decoration: none;
+      transition: box-shadow 0.22s ease, transform 0.22s ease, background 0.22s ease;
+    }
+    .buy:hover {
+      background: linear-gradient(135deg, rgba(155,98,220,1), rgba(105,52,165,0.95));
+      box-shadow: 0 0 28px rgba(150,90,220,0.3);
+      transform: translateY(-1px);
+    }
+
+    .checkout-note {
+      text-align: center;
+      margin-top: 0.7rem;
+      font-size: 0.6rem; font-weight: 300;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .wholesale {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%;
+      margin-top: 1.1rem;
+      padding: 0.95rem 1.3rem;
+      background: var(--amber-dim);
+      border: 1px solid var(--amber-border);
+      border-radius: 100px;
+      color: var(--amber);
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .wholesale:hover {
+      background: rgba(255,200,100,0.18);
+      border-color: rgba(255,200,100,0.45);
+    }
+    .wholesale svg { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.9; }
+
+    /* ── INCLUDES ── */
+    .section-label {
+      font-size: 0.56rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin: 2.2rem 0 0.8rem;
+    }
+    .includes { list-style: none; }
+    .includes li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.76rem; font-weight: 300; line-height: 1.6;
+      color: rgba(255,255,255,0.55);
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--hair);
+    }
+    .includes li:last-child { border-bottom: none; }
+    .includes svg {
+      width: 14px; height: 14px; flex-shrink: 0; margin-top: 3px;
+      color: var(--purple); opacity: 0.65;
+    }
+
+    .compat {
+      font-size: 0.76rem; font-weight: 300; line-height: 1.7;
+      color: rgba(255,255,255,0.5);
+      max-width: 44ch;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 0.6rem 1.5rem;
+      padding: 1.5rem 1.1rem;
+      border-top: 1px solid var(--hair);
+      background: rgba(5,5,8,0.6);
+    }
+    .footer a {
+      color: rgba(255,255,255,0.26); text-decoration: none;
+      font-size: 0.6rem; letter-spacing: 0.09em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer a:hover { color: rgba(255,255,255,0.6); }
+    .footer-sep { color: rgba(255,255,255,0.1); font-size: 0.65rem; }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%     { opacity: 0.3; transform: scale(0.6); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .product { grid-template-columns: minmax(0, 1fr); }
+      .stage-col { position: static; }
+      .price { font-size: 1.9rem; }
+    }
+    @media (max-width: 460px) {
+      .parts { grid-template-columns: minmax(0, 1fr); }
+      .part { flex-direction: row; align-items: center; gap: 10px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg" role="presentation"></div>
+  <div class="bg-veil" role="presentation"></div>
+
+  <div class="shell">
+
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span class="brand-name">BEIM GOODS</span>
+        <span class="brand-tagline">Where Digital Meets Reality</span>
+      </a>
+      <a class="topbar-back" href="/">&larr; Back to home</a>
+    </header>
+
+    <main class="product">
+
+      <!-- ══════ 3D STAGE ══════ -->
+      <div class="stage-col">
+        <div class="stage">
+          <model-viewer
+            id="kit-viewer"
+            src="/models/beim-goods-livestream-kit-packaging.glb"
+            poster="/models/poster-packaging.webp"
+            alt="The BEIM GOODS TTS Livestream Kit packaging, shown in 3D"
+            camera-controls
+            touch-action="pan-y"
+            auto-rotate
+            auto-rotate-delay="2500"
+            rotation-per-second="14deg"
+            interaction-prompt="none"
+            shadow-intensity="0.9"
+            shadow-softness="0.7"
+            exposure="1.05"
+            environment-image="neutral"
+            loading="lazy"
+            reveal="auto">
+
+            <!-- Shown if WebGL is unavailable or the script fails to load -->
+            <div class="stage-fallback" slot="poster">
+              <img src="/tts-livestreamkit-product.png"
+                   alt="BEIM GOODS TTS Livestream Kit — wireless earbuds and packaging" />
+            </div>
+          </model-viewer>
+
+          <div class="drag-hint" id="drag-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3v18M3 12h18"/>
+            </svg>
+            Drag to rotate &middot; scroll to zoom
+          </div>
+        </div>
+
+        <div class="parts" role="tablist" aria-label="Choose a part of the kit to view">
+          <button class="part" role="tab" aria-selected="true"
+                  data-src="/models/beim-goods-livestream-kit-packaging.glb"
+                  data-poster="/models/poster-packaging.webp"
+                  data-alt="The full TTS Livestream Kit packaging, shown in 3D">
+            <span class="part-idx">01</span>
+            <span class="part-name">Kit packaging</span>
+          </button>
+
+          <button class="part" role="tab" aria-selected="false"
+                  data-src="/models/beim-goods-earbuds-box.glb"
+                  data-poster="/models/poster-earbuds.webp"
+                  data-alt="The wireless earbuds box from the TTS Livestream Kit, shown in 3D">
+            <span class="part-idx">02</span>
+            <span class="part-name">Earbuds box</span>
+          </button>
+
+          <button class="part" role="tab" aria-selected="false"
+                  data-src="/models/beim-goods-quick-start-booklet.glb"
+                  data-poster="/models/poster-booklet.webp"
+                  data-alt="The quick start guide booklet from the TTS Livestream Kit, shown in 3D">
+            <span class="part-idx">03</span>
+            <span class="part-name">Quick start guide</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ══════ DETAIL ══════ -->
+      <div class="detail-col">
+
+        <h1 class="product-title">TTS Livestream Kit</h1>
+
+        <p class="product-sub">
+          Wireless earbuds paired with Beim Goods TTS software. Every chat comment is
+          read aloud in your ear, so you can keep selling without watching the feed.
+          Spin any part of the kit above to look closer.
+        </p>
+
+        <p class="section-label">Works with</p>
+        <p class="compat">
+          Streamyard, Whatnot, eBay Live, YouTube Live, Poshmark Live,
+          Amazon Live, Twitch, Kick, Zoom and more
+        </p>
+
+        <p class="section-label">The kit contains</p>
+        <ul class="includes">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            </svg>
+            Wireless earbuds with charging case
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+            </svg>
+            Beim Goods TTS software — 30 days free, then $1/month
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            Quick start guide
+          </li>
+        </ul>
+
+        <div class="price-row">
+          <span class="price">$135</span>
+          <span class="price-note">Free shipping &middot; 30 days of TTS included</span>
+        </div>
+
+        <a class="buy"
+           href="https://buy.stripe.com/6oU9AT9Yzcry50ZeAodwc01"
+           target="_blank" rel="noopener noreferrer">
+          Order Kit &rarr;
+        </a>
+        <p class="checkout-note">Ships to US &middot; Secure checkout via Stripe</p>
+
+        <a class="wholesale"
+           href="mailto:info@beimgoods.com?subject=Wholesale%20%26%20partner%20pricing%20%E2%80%94%20TTS%20Livestream%20Kit&amp;body=Hi%20Beim%20Goods%2C%0A%0AI%27d%20like%20pricing%20for%3A%0A%0AQuantity%3A%0AUse%20case%3A%0A%0AThanks%2C">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-10 6L2 7"/>
+          </svg>
+          Email for wholesale &amp; partner price
+        </a>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <a href="/Beim_Goods_Accessibility_TTS_Tool_phase1_Terms_of_Service.pdf"
+         target="_blank" rel="noopener">Terms of Service</a>
+      <span class="footer-sep" aria-hidden="true">&middot;</span>
+      <a href="/Beim_Goods_Accessibility_TTS_Tool_phase1_Privacy_Policy.pdf"
+         target="_blank" rel="noopener">Privacy Policy</a>
+      <span class="footer-sep" aria-hidden="true">&middot;</span>
+      <a href="/job/">We're Hiring</a>
+      <span class="footer-sep" aria-hidden="true">&middot;</span>
+      <a href="mailto:info@beimgoods.com">info@beimgoods.com</a>
+    </footer>
+
+  </div>
+
+  <script>
+    (function () {
+      var viewer = document.getElementById('kit-viewer');
+      var hint   = document.getElementById('drag-hint');
+      var tabs   = Array.prototype.slice.call(document.querySelectorAll('.part'));
+
+      /* Hide the drag hint once the visitor figures it out on their own. */
+      function dismissHint() { hint.classList.add('hidden'); }
+      ['pointerdown', 'wheel', 'touchstart'].forEach(function (evt) {
+        viewer.addEventListener(evt, dismissHint, { once: true, passive: true });
+      });
+
+      function select(tab) {
+        tabs.forEach(function (t) {
+          t.setAttribute('aria-selected', String(t === tab));
+        });
+        viewer.setAttribute('src',    tab.dataset.src);
+        viewer.setAttribute('poster', tab.dataset.poster);
+        viewer.setAttribute('alt',    tab.dataset.alt);
+        hint.classList.remove('hidden');
+      }
+
+      tabs.forEach(function (tab, i) {
+        tab.addEventListener('click', function () { select(tab); });
+
+        /* Arrow-key navigation across the tab list. */
+        tab.addEventListener('keydown', function (e) {
+          var next = null;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = tabs[(i + 1) % tabs.length];
+          if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   next = tabs[(i - 1 + tabs.length) % tabs.length];
+          if (next) { e.preventDefault(); next.focus(); select(next); }
+        });
+      });
+
+      /* Respect reduced-motion by stopping the idle spin. */
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      function applyMotion() {
+        if (reduce.matches) viewer.removeAttribute('auto-rotate');
+        else viewer.setAttribute('auto-rotate', '');
+      }
+      applyMotion();
+      if (reduce.addEventListener) reduce.addEventListener('change', applyMotion);
+    })();
+  </script>
+
+</body>
+</html>
