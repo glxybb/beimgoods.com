@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>art gallery demo — claim a pixel</title>
-<meta name="description" content="6,561 pixels. $1 each. 24-hour lease. Claim yours.">
+<meta name="description" content="6,561 pixels. Pick a color. Claim a pixel. A collaborative art demo.">
 <meta name="robots" content="noindex, nofollow">
 
 <!-- Security headers (GitHub Pages sets some; these cover what <meta> can) -->
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Content-Security-Policy"
-  content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://storage.googleapis.com;">
+  content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://storage.googleapis.com https://*.run.app;">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
 
@@ -378,7 +378,7 @@
 
   <div class="header">
     <h1><span>a</span>rt <span>g</span>allery <span>d</span>emo</h1>
-    <p>claim a pixel · $1.00/px · 24h </p>
+    <p>claim a pixel · 24h lease</p>
   </div>
 
   <div class="grid-frame">
@@ -463,59 +463,8 @@
             <div class="preview-swatch new" id="preview-new"></div>
           </div>
         </div>
-        <button class="btn" onclick="goToPay()">Continue to payment &#8212; $1.00</button>
+        <button class="btn" onclick="claimPixel()">Claim pixel</button>
         <button class="btn-outline" onclick="closeModal()">Cancel</button>
-      </div>
-
-      <!-- Step 2: Confirm and pay -->
-      <div class="step" id="step-pay">
-        <div class="modal-head">
-          <div>
-            <h2>Payment</h2>
-            <span class="coord" id="pay-coord"></span>
-          </div>
-          <button class="modal-close" onclick="closeModal()">&#215;</button>
-        </div>
-        <div class="pay-summary">
-          <div class="pay-left">
-            <div class="pay-swatch" id="pay-swatch"></div>
-            <span class="pay-label">1 pixel · 24h lease</span>
-          </div>
-          <span class="pay-price">$1.00</span>
-        </div>
-        <button class="btn" id="btn-pay" onclick="openStripe()">Pay with Stripe</button>
-        <button class="btn-outline" onclick="showStep('pick')">Back</button>
-        <div class="stripe-badge">
-          Powered by
-          <svg width="50" height="20" viewBox="0 0 50 20" fill="none">
-            <text x="0" y="15" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#635bff">stripe</text>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Step 3: Payment sent -->
-      <div class="step" id="step-sent">
-        <div class="sent-msg">
-          <div class="sent-icon">&#8599;</div>
-          <div class="sent-title">Complete payment on Stripe</div>
-          <div class="sent-sub">
-            Pixel <strong id="sent-coord"></strong><br>
-            After payment, your pixel will appear<br>on the canvas within a few minutes.
-          </div>
-        </div>
-        <button class="btn-outline" onclick="closeModal()">Close</button>
-      </div>
-
-      <!-- Step 4: Pixel occupied -->
-      <div class="step" id="step-occupied">
-        <div class="sent-msg">
-          <div class="sent-icon" style="border-color: var(--text-dim); color: var(--text-dim);">&#10005;</div>
-          <div class="sent-title">Occupied by someone else</div>
-          <div class="sent-sub">
-            Pixel <strong id="occupied-coord"></strong> is currently rented.<br>Pick another spot.
-          </div>
-        </div>
-        <button class="btn" onclick="closeModal()">Pick another pixel</button>
       </div>
 
     </div>
@@ -535,10 +484,10 @@ try {
 }
 
 // ══════════════════════════════════════════════════════════
-//  CONFIG — update these two values for your Firebase project
+//  CONFIG
 // ══════════════════════════════════════════════════════════
-var PIXELS_JSON_URL = "https://storage.googleapis.com/beimpixel.firebasestorage.app/pixels.json";
-var STRIPE_LINK     = "https://buy.stripe.com/00wbJ1eeP4Z6ctrfEsdwc02";
+var PIXELS_JSON_URL = "https://storage.googleapis.com/beimpixel.firebasestorage.app/artgallery.json";
+var CLAIM_URL       = "CLOUD_FUNCTION_URL_HERE";
 // ══════════════════════════════════════════════════════════
 
 var POLL_MS = 5 * 60 * 1000; // refresh every 5 minutes
@@ -611,22 +560,7 @@ function renderGrid() {
 
 function handlePixelClick(target) {
   var i = parseInt(target.dataset.i, 10);
-  // Fetch fresh pixel data before opening modal to prevent conflicts.
-  // Cache-busting query param bypasses the 5-minute CDN cache.
-  fetch(PIXELS_JSON_URL + "?_=" + Date.now())
-    .then(function(r) {
-      if (!r.ok) throw new Error(r.status);
-      return r.json();
-    })
-    .then(function(data) {
-      paidPixels = data;
-      renderGrid();
-      openModal(i);
-    })
-    .catch(function() {
-      // Network error — open modal with existing data (best effort)
-      openModal(i);
-    });
+  openModal(i);
 }
 
 function handleHover(target) {
@@ -673,14 +607,6 @@ function openModal(i) {
   // Mark placard step 1
   markPlacardStep(1);
 
-  // If pixel is already rented, show occupied message
-  if (paidPixels[String(i)]) {
-    document.getElementById("occupied-coord").textContent = coordText;
-    showStep("occupied");
-    document.getElementById("overlay").classList.remove("hidden");
-    return;
-  }
-
   selectedColor = DEFAULTS[i];
   document.getElementById("color-input").value = selectedColor;
   document.getElementById("color-hex").textContent = selectedColor.toUpperCase();
@@ -688,10 +614,6 @@ function openModal(i) {
   document.getElementById("preview-old").style.backgroundColor = DEFAULTS[i];
   document.getElementById("preview-new").style.backgroundColor = selectedColor;
   buildQuickColors();
-  // Reset pay button state for fresh modal
-  var btn = document.getElementById("btn-pay");
-  btn.disabled = false;
-  btn.textContent = "Pay with Stripe";
   showStep("pick");
   document.getElementById("overlay").classList.remove("hidden");
 }
@@ -735,29 +657,32 @@ function buildQuickColors() {
   });
 }
 
-// ── Payment ──
-function goToPay() {
-  var row = Math.floor(selectedIdx / G);
-  var col = selectedIdx % G;
-  document.getElementById("pay-coord").textContent =
-    "Pixel (" + row + ", " + col + ") \u00B7 " + selectedColor.toUpperCase();
-  document.getElementById("pay-swatch").style.backgroundColor = selectedColor;
-  showStep("pay");
-}
-
-function openStripe() {
-  var btn = document.getElementById("btn-pay");
-  if (btn.disabled) return;
+// ── Claim (free demo — writes to Firestore via Cloud Function) ──
+function claimPixel() {
+  var btn = document.querySelector("#step-pick .btn");
   btn.disabled = true;
-  btn.textContent = "Opening Stripe\u2026";
-  var row = Math.floor(selectedIdx / G);
-  var col = selectedIdx % G;
-  document.getElementById("sent-coord").textContent =
-    "(" + row + ", " + col + ") \u00B7 " + selectedColor.toUpperCase();
-  var ref = "px_" + selectedIdx + "_" + selectedColor.replace("#", "");
-  var url = STRIPE_LINK + "?client_reference_id=" + encodeURIComponent(ref);
-  window.open(url, "_blank");
-  showStep("sent");
+  btn.textContent = "Claiming\u2026";
+
+  fetch(CLAIM_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ index: selectedIdx, color: selectedColor }),
+  })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.ok) {
+        paidPixels[String(selectedIdx)] = selectedColor;
+        renderGrid();
+      }
+      btn.disabled = false;
+      btn.textContent = "Claim pixel";
+      closeModal();
+    })
+    .catch(function() {
+      btn.disabled = false;
+      btn.textContent = "Claim pixel";
+      closeModal();
+    });
 }
 
 // ── Overlay click-outside ──
