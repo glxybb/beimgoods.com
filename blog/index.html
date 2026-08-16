@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/BGfavicon16.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — BEIM GOODS</title>
+  <meta name="description" content="BEIM GOODS blog — step-by-step guides for adding real-time TTS text-to-speech to Whatnot, eBay Live, Poshmark, YouTube Live, StreamYard, Zoom, and Google Meet." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://beimgoods.com/blog/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Blog — BEIM GOODS" />
+  <meta property="og:description" content="Step-by-step guides for adding real-time TTS text-to-speech to your favorite livestream and meeting platforms." />
+  <meta property="og:url" content="https://beimgoods.com/blog/" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "BEIM GOODS Blog",
+    "url": "https://beimgoods.com/blog/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "BEIM GOODS",
+      "url": "https://beimgoods.com"
+    },
+    "blogPost": [
+      {
+        "@type": "BlogPosting",
+        "headline": "How to Add TTS Text-to-Speech to Whatnot Live Show",
+        "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-whatnot-live-show/"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "How to Add TTS Text-to-Speech to eBay Live",
+        "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-ebay-live/"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "How to Add TTS Text-to-Speech to Poshmark Live",
+        "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-poshmark-live/"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "How to Add TTS Text-to-Speech to YouTube Live",
+        "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-youtube-live/"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "How to Add TTS Text-to-Speech to StreamYard",
+        "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-streamyard/"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "How to Add TTS Text-to-Speech to Zoom Meetings",
+        "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-zoom-meetings/"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "How to Add TTS Text-to-Speech to Google Meet",
+        "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-google-meet/"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:        rgba(200,160,255,1);
+      --purple-dim:    rgba(200,160,255,0.12);
+      --purple-border: rgba(200,160,255,0.22);
+    }
+
+    html, body {
+      min-height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #050508;
+      color: #fff;
+    }
+
+    /* ── BACKGROUND ── */
+    .bg {
+      position: fixed; inset: 0;
+      background-image: url("https://raw.githubusercontent.com/glxybb/beimgoods.com/main/beimgoodsBackground.png");
+      background-size: cover; background-position: center top;
+      filter: brightness(0.38) saturate(1.1);
+      z-index: 0;
+    }
+    .overlay {
+      position: fixed; inset: 0;
+      background: linear-gradient(135deg,
+        rgba(5,5,8,0.62) 0%,
+        rgba(5,5,8,0.08) 50%,
+        rgba(5,5,8,0.62) 100%);
+      z-index: 1;
+    }
+
+    /* ── BRAND BLOCK ── */
+    .brand-block {
+      position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 10; text-align: center; white-space: nowrap;
+    }
+    .brand-name {
+      font-family: 'Roboto', 'Inter', sans-serif;
+      font-size: 1.1rem; font-weight: 800;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(255,255,255,0.92);
+      text-decoration: none; display: block;
+    }
+    .brand-tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.58rem; font-weight: 300;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      display: block; margin-top: 0.3rem;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .page {
+      position: relative; z-index: 2;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 7rem 1.5rem 5rem;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 2.8rem;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .page-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800; line-height: 1.15;
+      background: linear-gradient(135deg, #fff 0%, rgba(200,160,255,0.75) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.7rem;
+    }
+
+    /* ── BLOG LIST ── */
+    .blog-list {
+      display: flex; flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* ── BLOG ROW ── */
+    .blog-row {
+      display: flex; align-items: center;
+      gap: 1.4rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 0.7rem 1.2rem;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.25s ease;
+      animation: fadeUp 0.7s ease both;
+    }
+    .blog-row:nth-child(1) { animation-delay: 0.08s; }
+    .blog-row:nth-child(2) { animation-delay: 0.14s; }
+    .blog-row:nth-child(3) { animation-delay: 0.20s; }
+    .blog-row:nth-child(4) { animation-delay: 0.26s; }
+    .blog-row:nth-child(5) { animation-delay: 0.32s; }
+    .blog-row:nth-child(6) { animation-delay: 0.38s; }
+    .blog-row:nth-child(7) { animation-delay: 0.44s; }
+
+    .blog-row:hover {
+      background: rgba(200,160,255,0.06);
+      border-color: var(--purple-border);
+      box-shadow: 0 0 28px rgba(200,160,255,0.06);
+      transform: translateY(-1px);
+    }
+
+    .blog-row-img {
+      width: 110px; height: 68px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: rgba(200,160,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+
+    .blog-row-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem; font-weight: 600;
+      line-height: 1.35;
+      color: rgba(255,255,255,0.88);
+      transition: color 0.2s;
+    }
+    .blog-row:hover .blog-row-title { color: #fff; }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      text-align: center;
+      margin-top: 2.8rem;
+      animation: fadeUp 0.7s ease 0.55s both;
+    }
+    .cta-section p {
+      font-size: 0.85rem; font-weight: 300;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 1rem;
+    }
+    .cta {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 0.64rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 0.56rem 1.3rem; border-radius: 100px;
+      transition: all 0.22s ease;
+      background: var(--purple-dim); border: 1px solid var(--purple-border);
+      color: var(--purple);
+    }
+    .cta:hover {
+      background: rgba(200,160,255,0.22);
+      box-shadow: 0 0 18px rgba(200,160,255,0.14);
+    }
+
+    /* ── BOTTOM BAR ── */
+    .bottom-bar {
+      position: relative; z-index: 10;
+      padding: 0.9rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(5,5,8,0.75);
+      backdrop-filter: blur(10px);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.3rem 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .bottom-bar a {
+      color: rgba(255,255,255,0.26); text-decoration: none;
+      font-size: 0.61rem; letter-spacing: 0.09em; text-transform: uppercase;
+      transition: color 0.2s;
+      line-height: 1.8;
+    }
+    .bottom-bar a:hover { color: rgba(255,255,255,0.6); }
+
+    .bottom-col {
+      display: flex; flex-direction: column;
+    }
+    .bottom-col:nth-child(2) { text-align: center; }
+    .bottom-col:nth-child(3) { text-align: right; }
+
+    /* full-width border-top strip above the grid */
+    .bottom-bar-wrap {
+      position: relative; z-index: 10;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(5,5,8,0.75);
+      backdrop-filter: blur(10px);
+    }
+    .bottom-bar { border-top: none; background: none; backdrop-filter: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .page { padding: 6.5rem 1rem 3.5rem; }
+
+      .blog-row { gap: 1rem; padding: 0.6rem 0.8rem; }
+      .blog-row-img { width: 80px; height: 52px; }
+      .blog-row-title { font-size: 0.82rem; }
+
+      .bottom-bar { padding: 0.9rem 1rem; }
+    }
+
+    /* ── KEYFRAMES ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg" role="img" aria-label="Atmospheric dark background"></div>
+  <div class="overlay"></div>
+
+  <!-- Brand block -->
+  <div class="brand-block">
+    <a href="/" class="brand-name">BEIM GOODS</a>
+    <span class="brand-tagline">Where Digital Meets Reality</span>
+  </div>
+
+  <main class="page" role="main">
+
+    <header class="page-header">
+      <h1 class="page-title">Blogs</h1>
+    </header>
+
+    <div class="blog-list">
+
+      <a href="/blog/how-to-add-tts-text-to-speech-to-whatnot-live-show/" class="blog-row">
+        <img class="blog-row-img" src="/blog/img/blog-whatnot.png"
+             alt="TTS on Whatnot Live Show" />
+        <h2 class="blog-row-title">How to Add TTS Text&#8209;to&#8209;Speech to Whatnot Live Show</h2>
+      </a>
+
+      <a href="/blog/how-to-add-tts-text-to-speech-to-ebay-live/" class="blog-row">
+        <img class="blog-row-img" src="/blog/img/blog-ebay-live.png"
+             alt="TTS on eBay Live" />
+        <h2 class="blog-row-title">How to Add TTS Text&#8209;to&#8209;Speech to eBay Live</h2>
+      </a>
+
+      <a href="/blog/how-to-add-tts-text-to-speech-to-poshmark-live/" class="blog-row">
+        <img class="blog-row-img" src="/blog/img/blog-poshmark.png"
+             alt="TTS on Poshmark Live" />
+        <h2 class="blog-row-title">How to Add TTS Text&#8209;to&#8209;Speech to Poshmark Live</h2>
+      </a>
+
+      <a href="/blog/how-to-add-tts-text-to-speech-to-youtube-live/" class="blog-row">
+        <img class="blog-row-img" src="/blog/img/blog-youtube-live.png"
+             alt="TTS on YouTube Live" />
+        <h2 class="blog-row-title">How to Add TTS Text&#8209;to&#8209;Speech to YouTube Live</h2>
+      </a>
+
+      <a href="/blog/how-to-add-tts-text-to-speech-to-streamyard/" class="blog-row">
+        <img class="blog-row-img" src="/blog/img/blog-streamyard.png"
+             alt="TTS on StreamYard" />
+        <h2 class="blog-row-title">How to Add TTS Text&#8209;to&#8209;Speech to StreamYard</h2>
+      </a>
+
+      <a href="/blog/how-to-add-tts-text-to-speech-to-zoom-meetings/" class="blog-row">
+        <img class="blog-row-img" src="/blog/img/blog-zoom.png"
+             alt="TTS on Zoom Meetings" />
+        <h2 class="blog-row-title">How to Add TTS Text&#8209;to&#8209;Speech to Zoom Meetings</h2>
+      </a>
+
+      <a href="/blog/how-to-add-tts-text-to-speech-to-google-meet/" class="blog-row">
+        <img class="blog-row-img" src="/blog/img/blog-google-meet.png"
+             alt="TTS on Google Meet" />
+        <h2 class="blog-row-title">How to Add TTS Text&#8209;to&#8209;Speech to Google Meet</h2>
+      </a>
+
+    </div>
+
+    <div class="cta-section">
+      <p>Ready to try it? 30&#8209;day free trial, no card required to install.</p>
+      <a href="https://chromewebstore.google.com/detail/gnnabdhnogldhepghlbfcpfigcafcbfp"
+         class="cta" target="_blank" rel="noopener noreferrer">
+        Get the Extension &rarr;
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar-wrap" role="contentinfo">
+    <nav class="bottom-bar">
+      <div class="bottom-col">
+        <a href="/">Home</a>
+        <a href="/blog/">Blogs</a>
+      </div>
+      <div class="bottom-col">
+        <a href="/Beim_Goods_Accessibility_TTS_Tool_phase1_Terms_of_Service.pdf"
+           target="_blank" rel="noopener">Terms of Service</a>
+        <a href="/Beim_Goods_Accessibility_TTS_Tool_phase1_Privacy_Policy.pdf"
+           target="_blank" rel="noopener">Privacy Policy</a>
+      </div>
+      <div class="bottom-col">
+        <a href="/job/">We're Hiring</a>
+        <a href="mailto:info@beimgoods.com">info@beimgoods.com</a>
+      </div>
+    </nav>
+  </div>
+
+</body>
+</html>
