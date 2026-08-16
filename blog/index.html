@@ -100,19 +100,17 @@
       z-index: 1;
     }
 
-    /* ── BRAND BLOCK ── */
+    /* ── BRAND BLOCK (top-center) ── */
     .brand-block {
-      position: fixed; top: 0; left: 0; right: 0;
+      position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%);
       z-index: 10; text-align: center; white-space: nowrap;
-      padding: 1.5rem 0 0.8rem;
-      background: #050508;
     }
     .brand-name {
-      font-family: 'Roboto', 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
       font-size: 1.1rem; font-weight: 800;
       letter-spacing: 0.06em; text-transform: uppercase;
       color: rgba(255,255,255,0.92);
-      text-decoration: none; display: block;
+      display: block;
     }
     .brand-tagline {
       font-family: 'Inter', sans-serif;
@@ -122,6 +120,7 @@
       display: block; margin-top: 0.3rem;
     }
 
+    
     /* ── MAIN CONTENT ── */
     .page {
       position: relative; z-index: 2;
