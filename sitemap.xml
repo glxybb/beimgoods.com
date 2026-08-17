@@ -78,6 +78,14 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+
+  <url>
+    <loc>https://beimgoods.com/beimpixel/</loc>
+    <lastmod>2026-08-1</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
   <url>
     <loc>https://beimgoods.com/Beim_Goods_Accessibility_TTS_Tool_phase1_Terms_of_Service.pdf</loc>
     <lastmod>2026-08-10</lastmod>
