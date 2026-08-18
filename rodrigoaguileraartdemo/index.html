@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>rodrigo aguilera art demo — claim a pixel</title>
+<meta name="description" content="952 pixels. Free. 24-hour display. Claim yours.">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Security headers (GitHub Pages sets some; these cover what <meta> can) -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy"
+  content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://storage.googleapis.com https://*.run.app;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+
+<link rel="icon" type="image/png" sizes="16x16" href="RAfavicon16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #08080c;
+    --surface: #12121a;
+    --surface-2: #0a0a12;
+    --border: #1e1e30;
+    --border-2: #2a2a44;
+    --accent: #e0699a;
+    --accent-hover: #cf5a8b;
+    --accent-dim: rgba(224,105,154,0.08);
+    --accent-border: rgba(224,105,154,0.2);
+    --success: #34d399;
+    --text: #e8e8f0;
+    --text-2: #c8c8d4;
+    --text-dim: #6b6b80;
+    --text-dimmer: #4a4a64;
+    --mono: 'JetBrains Mono', monospace;
+    --px: 16px;    /* 28 x 16 = 448px wide, 34 x 16 = 544px tall */
+    --seam: rgba(0,0,0,0.3);   /* grid line between pixels */
+    --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    background: var(--bg); color: var(--text-2); font-family: var(--mono);
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; padding: 32px 16px 64px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .header { text-align: center; margin-bottom: 40px; }
+  .header h1 {
+    font-size: 28px; font-weight: 600; font-family: var(--mono);
+    color: var(--text); letter-spacing: -0.5px;
+  }
+  .header h1 span { color: var(--accent); }
+  .header p {
+    font-size: 13px; color: var(--text-dim);
+    font-family: var(--mono); margin-top: 8px;
+  }
+
+  .stats {
+    display: flex; gap: 24px; margin-bottom: 20px;
+    font-family: var(--mono); font-size: 12px; color: var(--text-dim);
+  }
+  .stats .count { color: var(--accent); }
+
+  .grid-frame {
+    display: inline-block; padding: 3px;
+    background: linear-gradient(135deg, #e0699a, #8e4c57);
+    border-radius: 4px;
+    box-shadow: 0 0 40px rgba(224,105,154,0.15), 0 0 80px rgba(224,105,154,0.05);
+  }
+  .grid {
+    display: grid; grid-template-columns: repeat(28, var(--px));
+    grid-template-rows: repeat(34, var(--px));
+    background: #111118; border-radius: 2px; overflow: hidden;
+  }
+  .px {
+    width: var(--px); height: var(--px); cursor: pointer;
+    transition: transform 0.1s; image-rendering: pixelated; position: relative;
+    box-shadow: inset -1px -1px 0 var(--seam);
+  }
+  .px:hover {
+    transform: scale(1.6); z-index: 10; box-shadow: none;
+    outline: 1.5px solid rgba(255,255,255,0.7); outline-offset: 0;
+  }
+  .px.paid::after {
+    content: ''; position: absolute; inset: 0;
+    border: 1px solid rgba(255,255,255,0.15); pointer-events: none;
+  }
+
+  .hover-info {
+    margin-top: 12px; font-family: var(--mono); font-size: 12px;
+    color: var(--text-dim); display: flex; gap: 16px;
+    align-items: center; min-height: 20px;
+  }
+  .hover-swatch {
+    width: 10px; height: 10px; border-radius: 2px;
+    display: inline-block; border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .legend {
+    margin-top: 24px; font-size: 12px; color: var(--text-dimmer);
+    font-family: var(--mono); text-align: center; max-width: 420px; line-height: 1.6;
+  }
+
+  .overlay {
+    position: fixed; inset: 0; background: rgba(4,4,8,0.85);
+    backdrop-filter: blur(8px); display: flex;
+    align-items: center; justify-content: center;
+    z-index: 1000; padding: 16px;
+  }
+  .overlay.hidden { display: none; }
+
+  .modal {
+    background: var(--surface); border-radius: 16px;
+    border: 1px solid var(--border); width: 100%; max-width: 380px;
+    padding: 28px; box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    animation: fadeIn 0.2s ease-out;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(224,105,154,0.4); } 50% { box-shadow: 0 0 0 6px rgba(224,105,154,0); } }
+
+  .modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .modal-head h2 { font-size: 17px; font-weight: 600; color: var(--text); }
+  .modal-head .coord { font-family: var(--mono); font-size: 12px; color: var(--text-dim); }
+  .modal-close {
+    background: none; border: none; color: var(--text-dim);
+    font-size: 22px; cursor: pointer; padding: 4px; line-height: 1;
+  }
+
+  .color-row { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .color-well {
+    position: relative; width: 64px; height: 64px; border-radius: 12px;
+    overflow: hidden; border: 2px solid var(--border-2); flex-shrink: 0;
+  }
+  .color-well input {
+    position: absolute; inset: -8px; width: calc(100% + 16px);
+    height: calc(100% + 16px); border: none; cursor: pointer; background: none;
+  }
+  .color-hex { font-family: var(--mono); font-size: 18px; color: var(--text); font-weight: 600; }
+  .color-hint { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
+
+  .quick-colors { display: flex; gap: 6px; margin-bottom: 24px; flex-wrap: wrap; }
+  .qc {
+    width: 28px; height: 28px; border-radius: 6px; cursor: pointer;
+    border: 2px solid transparent; transition: border-color 0.15s;
+  }
+  .qc.active { border-color: #fff; }
+  .qc.dark { box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15); }
+
+  .preview {
+    background: var(--surface-2); border-radius: 10px; padding: 16px;
+    margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .preview-label { font-size: 13px; color: var(--text-dim); }
+  .preview-swatches { display: flex; align-items: center; gap: 12px; }
+  .preview-swatch {
+    width: 32px; height: 32px; border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .preview-swatch.new { animation: pulse 2s ease-in-out infinite; }
+  .preview-arrow { color: var(--text-dimmer); font-size: 18px; }
+
+  .btn {
+    background: var(--accent); color: white; border: none; border-radius: 10px;
+    padding: 14px 24px; font-size: 15px; font-weight: 600; cursor: pointer;
+    width: 100%; font-family: var(--mono); transition: background 0.2s, transform 0.1s;
+  }
+  .btn:hover { background: var(--accent-hover); }
+  .btn:active { transform: scale(0.98); }
+  .btn-outline {
+    background: transparent; color: var(--text-dim); border: 1.5px solid var(--border-2);
+    border-radius: 10px; padding: 12px 24px; font-size: 14px; font-weight: 500;
+    cursor: pointer; width: 100%; font-family: var(--mono); transition: all 0.2s; margin-top: 10px;
+  }
+  .btn-outline:hover { border-color: var(--text-dimmer); color: var(--text-2); }
+
+  .sent-msg {
+    text-align: center; padding: 32px 0;
+  }
+  .sent-icon {
+    width: 48px; height: 48px; margin: 0 auto 16px;
+    border: 2px solid var(--accent); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .sent-title { color: var(--text); font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .sent-sub { color: var(--text-dim); font-size: 13px; line-height: 1.5; }
+
+  .step { display: none; }
+  .step.active { display: block; }
+
+  /* ── Gallery Placard ── */
+  .placard-wrapper {
+    margin-top: 16px;
+    -webkit-perspective: 1200px;
+    perspective: 1200px;
+    width: 454px;
+    max-width: 100%;
+  }
+  .placard {
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    transition: -webkit-transform 1.2s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .placard.flipped {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+  .placard-front, .placard-back {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 4px;
+    min-height: 380px;
+  }
+  .placard-front {
+    background: #fbeef5;
+    border: 1px solid #f2dce8;
+    padding: 24px 28px;
+    color: #2a1020;
+  }
+  .placard-back {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    background: #fbeef5;
+    border: 1px solid #f2dce8;
+    padding: 28px 32px;
+    color: #2a1020;
+    min-height: 380px;
+  }
+  .placard-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8a4060;
+    margin-bottom: 20px;
+  }
+  .placard-steps {
+    list-style: none;
+    counter-reset: steps;
+  }
+  .placard-steps li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: #5c3448;
+    transition: color 0.3s;
+    border-bottom: none;
+  }
+  .placard-steps li:last-child {
+    border-bottom: none;
+  }
+  .placard-steps li.done {
+    color: #2a1020;
+  }
+  .step-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: none;
+    background: #f4e0ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: #8a4060;
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  .placard-steps li.done .step-num {
+    background: #ecd0de;
+    color: #a3506f;
+  }
+  .step-reveal {
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .step-reveal:hover {
+    color: #2a1020;
+  }
+  .step-reveal.locked {
+    opacity: 0.4;
+    cursor: default;
+  }
+  .step-reveal.locked:hover {
+    color: var(--text-dim);
+  }
+
+  /* Placard back */
+  .placard-back-title {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: #8a4060;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+  .placard-back p {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #3a1c2c;
+    margin-bottom: 14px;
+  }
+  .placard-back p:last-of-type {
+    margin-bottom: 0;
+    font-style: italic;
+    color: #8a4060;
+  }
+  .placard-back .placard-flip-back {
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: #a5738a;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s;
+  }
+  .placard-back .placard-flip-back:hover {
+    color: #5c3448;
+  }
+
+  /* Footer */
+  .gallery-footer {
+    margin-top: 32px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dimmer);
+    display: flex;
+    gap: 16px;
+  }
+  .gallery-footer a {
+    color: var(--text-dim);
+    text-decoration: none;
+  }
+  .gallery-footer a:hover {
+    color: var(--text-2);
+  }
+
+  @media (max-width: 500px) {
+    :root { --px: 11px; --seam: rgba(0,0,0,0.22); }   /* 28 x 11 = 308px wide */
+    .header { margin-bottom: 28px; }
+    .header h1 { font-size: 22px; }
+    body { padding: 20px 12px 40px; }
+    .placard-wrapper { width: 326px; margin-top: 28px; }
+    .placard-front { padding: 20px 22px; }
+    .placard-back { padding: 22px 24px; }
+    .placard-back p { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <h1><span>r</span>odrigo <span>a</span>guilera <span>a</span>rt <span>d</span>emo</h1>
+    <p>claim a pixel · free · 24h</p>
+  </div>
+
+  <div class="grid-frame">
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="hover-info" id="hover-info"></div>
+
+  <!-- Gallery Placard -->
+  <div class="placard-wrapper">
+    <div class="placard" id="placard">
+
+      <!-- Front: Instructions -->
+      <div class="placard-front">
+        <div class="placard-title">Instructions</div>
+        <ul class="placard-steps">
+          <li id="pstep-1">
+            <span class="step-num">1</span>
+            <span>Select a pixel</span>
+          </li>
+          <li id="pstep-2">
+            <span class="step-num">2</span>
+            <span>Change the pixel's color</span>
+          </li>
+          <li id="pstep-3" class="step-reveal" onclick="revealPlacard()">
+            <span class="step-num">3</span>
+            <span>Reveal placard ↻</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Back: The message -->
+      <div class="placard-back">
+        <div class="placard-back-title">The Beim Pixel Project @ RodrigoAguileraArtDemo</div>
+        <p>A 28×34 canvas, open to anyone. One click changes one pixel for 24 hours.</p>
+        <p>One pixel is a small act. Alone, each person pulls the canvas in a different direction. Over time, the painting drifts into noise.</p>
+        <p>But when a group coordinates, they compose something new, e.g. a painting, a message, a shared vision. What no individual can create alone, a collective can.</p>
+        <p>Alone, we make marks. Together, we build vision.</p>
+        <div class="placard-flip-back" onclick="unrevealPlacard()">↺ flip back</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="margin-top: 28px;">
+    <a href="https://beimgoods.com" style="font-family: var(--mono); font-size: 12px; color: var(--accent); text-decoration: none; transition: opacity 0.2s;">← return to beimgoods.com</a>
+  </div>
+
+  <div class="gallery-footer">
+    <a href="tos.html">Terms of Service</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+
+  <!-- Modal -->
+  <div class="overlay hidden" id="overlay">
+    <div class="modal">
+
+      <!-- Step 1: Pick color -->
+      <div class="step active" id="step-pick">
+        <div class="modal-head">
+          <div>
+            <h2>Claim pixel</h2>
+            <span class="coord" id="pick-coord">(0, 0)</span>
+          </div>
+          <button class="modal-close" onclick="closeModal()">&#215;</button>
+        </div>
+        <div class="color-row">
+          <div class="color-well">
+            <input type="color" id="color-input" value="#ff4444">
+          </div>
+          <div>
+            <div class="color-hex" id="color-hex">#FF4444</div>
+            <div class="color-hint">Tap the swatch to pick</div>
+          </div>
+        </div>
+        <div class="quick-colors" id="quick-colors"></div>
+        <div class="preview">
+          <div class="preview-label">Preview</div>
+          <div class="preview-swatches">
+            <div class="preview-swatch" id="preview-old"></div>
+            <span class="preview-arrow">&#8594;</span>
+            <div class="preview-swatch new" id="preview-new"></div>
+          </div>
+        </div>
+        <button class="btn" id="btn-claim" onclick="claimPixel()">Claim pixel</button>
+        <button class="btn-outline" onclick="closeModal()">Cancel</button>
+      </div>
+
+      <!-- Step 2: Claimed -->
+      <div class="step" id="step-sent">
+        <div class="sent-msg">
+          <div class="sent-icon" style="border-color: var(--success); color: var(--success);">&#10003;</div>
+          <div class="sent-title">Pixel claimed</div>
+          <div class="sent-sub">
+            Pixel <strong id="sent-coord"></strong><br>
+            Everyone will see it within a few minutes.<br>It reverts after 24 hours.
+          </div>
+        </div>
+        <button class="btn" onclick="closeModal()">Claim another</button>
+      </div>
+
+      <!-- Step 4: Something went wrong -->
+      <div class="step" id="step-error">
+        <div class="sent-msg">
+          <div class="sent-icon" style="border-color: var(--text-dim); color: var(--text-dim);">!</div>
+          <div class="sent-title">Couldn’t claim that pixel</div>
+          <div class="sent-sub">
+            Network hiccup, most likely.<br>Try again in a moment.
+          </div>
+        </div>
+        <button class="btn" onclick="closeModal()">Close</button>
+      </div>
+
+      <!-- Step 4: Pixel occupied -->
+      <div class="step" id="step-occupied">
+        <div class="sent-msg">
+          <div class="sent-icon" style="border-color: var(--text-dim); color: var(--text-dim);">&#10005;</div>
+          <div class="sent-title">Occupied by someone else</div>
+          <div class="sent-sub">
+            Pixel <strong id="occupied-coord"></strong> is already claimed.<br>Pick another spot.
+          </div>
+        </div>
+        <button class="btn" onclick="closeModal()">Pick another pixel</button>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+// ── Clickjacking protection ──
+// GitHub Pages cannot set X-Frame-Options header and browsers
+// ignore frame-ancestors in CSP meta tags, so we use a frame-buster.
+try {
+  if (window.top !== window.self) {
+    window.top.location = window.self.location; // throws in sandboxed iframes
+    document.body.innerHTML = ""; // only reached if navigation succeeded
+  }
+} catch (e) {
+  // Sandboxed iframe (e.g. preview) — page continues normally
+}
+
+// ══════════════════════════════════════════════════════════
+//  CONFIG
+//  CLAIM_URL comes from Firebase Console -> Functions after the
+//  claimPixelRodrigo function is deployed. Free canvas: no payment,
+//  the browser POSTs the claim straight to the function.
+//  Firestore collection: pixels-rodrigoaguilera
+// ══════════════════════════════════════════════════════════
+var PIXELS_JSON_URL = "https://storage.googleapis.com/beimpixel.firebasestorage.app/rodrigoaguilera.json";
+var CLAIM_URL       = "https://claimpixelrodrigo-64auxas6qq-uc.a.run.app";
+// ══════════════════════════════════════════════════════════
+
+var POLL_MS = 5 * 60 * 1000; // refresh every 5 minutes
+var GW = 28;              // columns
+var GH = 34;              // rows
+var TOTAL = GW * GH;      // 952
+var QUICK = ["#ff4444","#ff8c00","#ffdd00","#44cc44","#00aaff","#e0699a","#ff69b4","#ffffff","#888888","#000000"];
+
+// Default image: 28x34 artwork, one 6-digit hex per pixel, row-major.
+// All 952 pixels are distinct colours, so a palette+index map would be
+// larger than the raw data.
+var IMG = "1474691c7777297c91317b8649725d405f563057532e54732a2c353638392a383832393a2b373a33373938303f2e65673b71572f4e3f285d4c304941224a4d2e4941096c7150875a23644c4f704925654e54885c15746a1c78772a7b8d327881516251554b493c6b62496754292d3c293e55283b492c3e63273c4b2d3e62283e4d2d41633e3e3a4b6954685e4b822f355a4144862b304178684746735f8a614c48735d8662504d7b16766c26816d53a26a539b6a4a735b425d5133584d375858272a353035382937392f3a3d2a3b3d2e3c4129404a295f672e302a4a6c56305b4f8030352a484b852a302c66514c825c2b6b5021775c224346638f5e16766b25816954a363539962506453524e4a39645b4a6951282d3e3148572c465334456029404e3b47605c46503c4c643e3733364f415e5c4c40453c5044453c443b326f644b4769588a6247476c698a5952507a427c66518063608a585f5e71346ea234689d2b6788326a8230636b313c662f3c62507174765a5c705675bfa0a6446362233d3b2a68583b63492a675c5e43765744771e568d1f4d92205a911f4d9325598e224e8e717a83538084597b513a547122607e4e4f6628669227678e32737a2f33642f356468939db98077bc8d9ee4bcb98f78727e67382773595f40393f8c72634284634183436c735e6f726c59a258706c37376e827e70687d663f6a695d824e3a6769155c6f3a587626659124658d3272792d31602d335fa4bcc1ca9a94cbb7a7dcb2b2978b5789764528735c4f52403c8668644182634281427168646c5c4f687257796c525a575f6e597b62583c676681994a37676d186965424f611f7279246e7659545933676f556075d4c9beb8a6a399b1a9c68d998c7d495d5443217562186c56267a63584c6b425b7845726656695b47766285876c6869995e755c8463653d66668b9b5c4e765c1467663d4d5e12696019685f61524c2d7a63908e8dcec1b4bcb3b07782969459657365594d3733237856046d5a2a82685156564694883c706450746555796178836c676478526b58707b73355d4d7a91577c903e165b773555850f576d105a6f3470681c545db3a0a4c2bcb4cebab5845c72634b503c63634937322d7d58046d58378a7050545449978e4c647f527467557860687d67686580576e5762706e335943698839697f4123598b4547841d5a8c1b5b8b22657c376b87c8c1badbc6b6bfc28790606c72545b3d4f5e5a51554f87711c725a357757665c5a2f6166715dac6667805761706f8d816755a55460703f64452f4b43496e434652561d538b1d528b1c5792265e8c2e6b9f85a18bd3e6badfdec7d8d55eac8187b866558554629391a1a8a5a36e7e6c54615172635f534a495a6892727498403e6e4d9893443b72395c7d385346374355586b415d516f244b672348582a5b7358807069abb3a9a495c3ebe6dddab9e2c3b1d3b2d3e4c3a9deb4d8bca6abc1a194bb858a7c526f3c514c743f4c4f8769408e5f273e5b4a8f5d3544683f7c6d4269423b53405176446f773c395545354e3f5c6e5e8cbab495c69972977ed1e5b5b4daa6c9e3b0b2dfb1afdcb8e4e3d59f838f7c8d7e946262a78aa5836868414c46566097458f705753805789567972a72c52735d6d415c4f69979b607b6a91416f5b597e55a9a27dc5b696bf9592ac98909cd4cbdde7d8c2e8dfe5eedfbae5dce0e2d4caa1a3c27577b059649e46485869613f484147875f459260248765439168378f6d4b9064487040626e33456c3f6b762c556a5d50757093c999759c7f91c696afbb82ddecc6dae8cfd7e9c0c7e3c1d2e8bbc8e8c7a6d6cca4c8b5936d6da89bb77644473f49494d5a9c408d6a67557f5a87518e72a25889519e9c607a688d888e54726485688175a78d8fe6bf98c3ab9763765fbcb19fc1eaeee6ece2c9ecece4eaddb0e5eadce3d8e1c2c2c3978fc9b4b487546f3b63554349464394955f9c519bcc695e994ba8b84c6293584d25232d534e45725b6a4161a67baeecbcafe08f9ac681677b1d1eafa890a2c9cddac2b4c86c50b6c8bad0a377b6cec1c1bda9a880777c946eb1917e4a7b5667242d2e594746746b4a765249756c676e4b7d5ea63c583c6e7e7428524a6a716ec9a9a6c4d1bcaea4957e6c67613030b3998573afc5dcc1c3d2b49ebfc2b9d5a277e0c9c2a9b380b4987284836bb99679367e51a14b3d6d79417f932a5f68454d59468d1d1e73873f608e7324464a508065c9ada0c6a2a1bdad8483796e9068655d333198a4977babae94a99d90b2b09bb8adbed1b9a9c6bda3b8a0a78277775e5da078754f7d57a14b3c4f6e4e73599338594a755c9e6c69454e72664b72531d4647bd90a1dab08edda2ae907d7444645c245a5c5b3434743a4582b6cbd1b7a5a1cad5dce1dfa8d2dccebebfa4b381b396745b4741ac7b756e8265a14b39687444465648626d44868c358e191da05058305f4a1f494bd9aebad7ae98ae808985605f52574e3f35365e3331b77c6e846157e3b79bc1d1acd2cdbcaccaafc7bbb0a7b27ea17d6f52403ab3897cadb18fa1483957683e2b514b4e704e6d5c8d414d3e4152525c7e561f4d49d8b6bae2cb52b1958aada69a8b8b7d6a8e9a6e8f9ea0b6b0a77a63b7aa99dbcfaedfc9c2d1c6abcfb3acaab99da5575c6c4a4bb0756db9c2a8a0463966723e5c7732606f484b514f6a2b2470832c688f52265240d1c864c2b660b99163a48d849495758b866c6e776c9f7e5e895341cea993e5d9a9ecd8b3e6cb64c79974b795828779527a543ab4b18bc7ab9a9b99772e67837a5b8623527261528b2b40516e638249914e4654647bb43c627f6c636a518a5e5c51695a554c394a513daf7e52bd9d74dccda9e7e2a5d7d59cdec360c2946fd3b194aa7c40645845778e69dabd9f8ca8861962625e7b6912565c577b6e0e5453577a7354963b5a686d53983a3b6d4f33554a59605f304542614f41726149d0a987e6d888e1d4a8e6d989e4e0b8e2c75dc29166dab9a08c7b4356483062784ecea994b6ad8c49946949976b2075624595720950434892705f99345b6f675b9a3441704e3651425652553a433aa1775cb98568ddb488e8d789d4c890e3d481ddd7a5e5cd5dc49466d6b49e8269575045335f764dcaa995b9ad8d858c9a428d6918736a3557700b5753478f694b923e5c65764c97463a6c4f34524560484a5a6d58b9987fd9b299d7aa7ae6d17ad4ca8fe4d57ad8cd89dabd77c3926ac2968c83675853443363784fb38d85ae99908e9190337f72065769274d79085a6c2a76655b93255067585d9939436f4a52453346596e9b8d7ccba08be6c5b4dc9e95e7c25bdccc96e2cd66ddd395b6ac6bbe8b6aaf7c7d7a6a544d4d2b5e774c685d61ae747994a68f378375034e6535877b04536c23736a34895d4d4a7533884e2e5f47562933614982c48890d5a390d8b0b2d08f9be4b683c8cc9ecbc385c5d0a282a456a98774b07a7da1626a3566513f6b5a175563936054c48ab065945b0d5a6a428b680f606e3d876a286c76296b72395d313a5c32486457137268afa378bfc5b7a3ccc2dad4b4e6d9d1d0b59a9ba2acb6bab6758e81876f63b76c609c7d720f677d0a5d880c678b837276dca17d8c94821d65851869941d67861a6c95286b75286a70385b303d59346f4a7f1f6a60d7c374c4c2aed0c27bc1bb89d7c6bbdac28fb98c85aa99925f765190776bc8b2646478682060581e7caa196084085b8ab19397b88b853e4b3822566e16413b0f5274266b7327696f375a2f385a2e4c5f4d581a21ab9a74c59e9995c5c2d0b796d6bbbdd3a9a9956e399c9b975a6d66877268ad9478a382720c67811d7ea908495c04608c0d6086b48785cb956d8c9079155c67274d63256a7327696e385b2f3c5833563b6f2a7766b18d5fbf9f98dcca77b6b3879d9490ab5058616b446638769d796ebebab2c5a380697a6e1f60580e82912c76730a7b891a3a350f1534c6968aba6c4d24382b1b1c27";
+var DEFAULTS = (function () {
+  var out = new Array(TOTAL);
+  for (var i = 0; i < TOTAL; i++) out[i] = "#" + IMG.substr(i * 6, 6);
+  return out;
+})();
+
+// ── State ──
+var paidPixels = {};   // { "index": "#color" } — from server JSON
+var selectedIdx = null;
+var selectedColor = "#ff4444";
+
+// ── Fetch pixel data from server ──
+function fetchPixels() {
+  fetch(PIXELS_JSON_URL, { cache: "default" })
+    .then(function(r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    })
+    .then(function(data) {
+      paidPixels = data;
+      renderGrid();
+    })
+    .catch(function() {
+      // First load or network error — show default image
+      renderGrid();
+    });
+}
+
+// ── Grid ──
+function buildGrid() {
+  var grid = document.getElementById("grid");
+  var frag = document.createDocumentFragment();
+  for (var i = 0; i < TOTAL; i++) {
+    var el = document.createElement("div");
+    el.className = "px";
+    el.style.backgroundColor = DEFAULTS[i];
+    el.dataset.i = i;
+    frag.appendChild(el);
+  }
+  grid.appendChild(frag);
+  grid.addEventListener("click", function(e) {
+    if (e.target.classList.contains("px")) handlePixelClick(e.target);
+  });
+  grid.addEventListener("mouseover", function(e) {
+    if (e.target.classList.contains("px")) handleHover(e.target);
+  });
+  grid.addEventListener("mouseleave", clearHover);
+}
+
+function renderGrid() {
+  var grid = document.getElementById("grid");
+  for (var i = 0; i < TOTAL; i++) {
+    var el = grid.children[i];
+    var paid = paidPixels[String(i)];
+    if (paid && /^#[0-9a-fA-F]{6}$/.test(paid)) {
+      el.style.backgroundColor = paid;
+      el.className = "px paid";
+    } else {
+      el.style.backgroundColor = DEFAULTS[i];
+      el.className = "px";
+    }
+  }
+}
+
+function handlePixelClick(target) {
+  var i = parseInt(target.dataset.i, 10);
+  // Fetch fresh pixel data before opening modal to prevent conflicts.
+  // Cache-busting query param bypasses the 5-minute CDN cache.
+  fetch(PIXELS_JSON_URL + "?_=" + Date.now())
+    .then(function(r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    })
+    .then(function(data) {
+      paidPixels = data;
+      renderGrid();
+      openModal(i);
+    })
+    .catch(function() {
+      // Network error — open modal with existing data (best effort)
+      openModal(i);
+    });
+}
+
+function handleHover(target) {
+  var i = parseInt(target.dataset.i, 10);
+  var c = paidPixels[String(i)] || DEFAULTS[i];
+  // Validate color is a safe hex value before using it in styles
+  if (!/^#[0-9a-fA-F]{6}$/.test(c)) c = "#000000";
+  var row = Math.floor(i / GW);
+  var col = i % GW;
+  var info = document.getElementById("hover-info");
+  // Clear previous content safely
+  while (info.firstChild) info.removeChild(info.firstChild);
+  // Build with DOM methods — no innerHTML, no injection risk
+  var coordSpan = document.createElement("span");
+  coordSpan.textContent = "(" + row + ", " + col + ")";
+  info.appendChild(coordSpan);
+  var swatch = document.createElement("span");
+  swatch.className = "hover-swatch";
+  swatch.style.backgroundColor = c;
+  info.appendChild(swatch);
+  var colorSpan = document.createElement("span");
+  colorSpan.textContent = c;
+  info.appendChild(colorSpan);
+  if (paidPixels[String(i)]) {
+    var claimedSpan = document.createElement("span");
+    claimedSpan.style.color = "var(--accent)";
+    claimedSpan.textContent = "\u25CF claimed";
+    info.appendChild(claimedSpan);
+  }
+}
+
+function clearHover() {
+  var info = document.getElementById("hover-info");
+  while (info.firstChild) info.removeChild(info.firstChild);
+}
+
+// ── Modal ──
+function openModal(i) {
+  selectedIdx = i;
+  var row = Math.floor(i / GW);
+  var col = i % GW;
+  var coordText = "(" + row + ", " + col + ")";
+
+  // Mark placard step 1
+  markPlacardStep(1);
+
+  // If pixel is already rented, show occupied message
+  if (paidPixels[String(i)]) {
+    document.getElementById("occupied-coord").textContent = coordText;
+    showStep("occupied");
+    document.getElementById("overlay").classList.remove("hidden");
+    return;
+  }
+
+  selectedColor = DEFAULTS[i];
+  document.getElementById("color-input").value = selectedColor;
+  document.getElementById("color-hex").textContent = selectedColor.toUpperCase();
+  document.getElementById("pick-coord").textContent = coordText;
+  document.getElementById("preview-old").style.backgroundColor = DEFAULTS[i];
+  document.getElementById("preview-new").style.backgroundColor = selectedColor;
+  buildQuickColors();
+  // Reset claim button state for fresh modal
+  var btn = document.getElementById("btn-claim");
+  btn.disabled = false;
+  btn.textContent = "Claim pixel";
+  showStep("pick");
+  document.getElementById("overlay").classList.remove("hidden");
+}
+
+function closeModal() {
+  document.getElementById("overlay").classList.add("hidden");
+  selectedIdx = null;
+}
+
+function showStep(name) {
+  var steps = document.querySelectorAll(".step");
+  for (var j = 0; j < steps.length; j++) steps[j].classList.remove("active");
+  document.getElementById("step-" + name).classList.add("active");
+}
+
+// ── Color picker ──
+document.getElementById("color-input").addEventListener("input", function(e) {
+  selectedColor = e.target.value;
+  document.getElementById("color-hex").textContent = selectedColor.toUpperCase();
+  document.getElementById("preview-new").style.backgroundColor = selectedColor;
+  buildQuickColors();
+  markPlacardStep(2);
+});
+
+function buildQuickColors() {
+  var container = document.getElementById("quick-colors");
+  while (container.firstChild) container.removeChild(container.firstChild);
+  QUICK.forEach(function(c) {
+    var el = document.createElement("div");
+    el.className = "qc" + (c === selectedColor ? " active" : "") + (c === "#000000" ? " dark" : "");
+    el.style.backgroundColor = c;
+    el.addEventListener("click", function() {
+      selectedColor = c;
+      document.getElementById("color-input").value = c;
+      document.getElementById("color-hex").textContent = c.toUpperCase();
+      document.getElementById("preview-new").style.backgroundColor = c;
+      buildQuickColors();
+      markPlacardStep(2);
+    });
+    container.appendChild(el);
+  });
+}
+
+// ── Claim ──
+// Firestore denies all client writes, so the claim goes through the
+// Cloud Function, which validates index + colour and does an atomic
+// check-and-write. The server is the authority on who got there first.
+function claimPixel() {
+  var btn = document.getElementById("btn-claim");
+  if (btn.disabled) return;
+  btn.disabled = true;
+  btn.textContent = "Claiming…";
+
+  var row = Math.floor(selectedIdx / GW);
+  var col = selectedIdx % GW;
+  var coordText = "(" + row + ", " + col + ") · " + selectedColor.toUpperCase();
+
+  fetch(CLAIM_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ index: selectedIdx, color: selectedColor })
+  })
+    .then(function(r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    })
+    .then(function(data) {
+      if (data && data.ok) {
+        document.getElementById("sent-coord").textContent = coordText;
+        // Paint it locally so it shows before the next 5-minute poll
+        paidPixels[String(selectedIdx)] = selectedColor.toLowerCase();
+        renderGrid();
+        showStep("sent");
+      } else if (data && data.reason === "occupied") {
+        document.getElementById("occupied-coord").textContent =
+          "(" + row + ", " + col + ")";
+        showStep("occupied");
+      } else {
+        showStep("error");
+      }
+    })
+    .catch(function() {
+      showStep("error");
+    });
+}
+
+// ── Overlay click-outside ──
+document.getElementById("overlay").addEventListener("click", function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ── Init ──
+buildGrid();
+fetchPixels();
+setInterval(fetchPixels, POLL_MS);
+
+// ── Placard ──
+var placardStep1 = false;
+var placardStep2 = false;
+
+function markPlacardStep(n) {
+  if (n === 1 && !placardStep1) {
+    placardStep1 = true;
+    document.getElementById("pstep-1").classList.add("done");
+  }
+  if (n === 2 && !placardStep2) {
+    placardStep2 = true;
+    document.getElementById("pstep-2").classList.add("done");
+  }
+  if (placardStep1 && placardStep2) {
+    document.getElementById("pstep-3").classList.add("done");
+  }
+}
+
+function revealPlacard() {
+  // Mark all steps as done on reveal
+  document.getElementById("pstep-1").classList.add("done");
+  document.getElementById("pstep-2").classList.add("done");
+  document.getElementById("pstep-3").classList.add("done");
+  document.getElementById("placard").classList.add("flipped");
+}
+
+function unrevealPlacard() {
+  document.getElementById("placard").classList.remove("flipped");
+}
+</script>
+</body>
+</html>
