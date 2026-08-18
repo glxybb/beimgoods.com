@@ -5,12 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Go-to-Market &amp; Marketing — BEIM GOODS</title>
-  <meta name="description" content="BEIM GOODS is hiring a contract Go-to-Market & Marketing role. Bring our livestream TTS tool to market. Performance-based compensation." />
+  <meta name="description" content="BEIM GOODS is hiring a contract Go-to-Market & Marketing role. Bring Beim Goods Privacy First livestream TTS tool to market. Performance-based compensation." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://beimgoods.com/job/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Go-to-Market & Marketing — BEIM GOODS" />
-  <meta property="og:description" content="Contract role bringing our livestream TTS tool to market. Performance-based pay tied to real results." />
+  <meta property="og:description" content="Contract role bringing Beimg Goods Privacy First livestream TTS tool to market. Performance-based pay tied to real results." />
   <meta property="og:url" content="https://beimgoods.com/job/" />
 
   <script type="application/ld+json">
@@ -18,7 +18,7 @@
     "@context": "https://schema.org",
     "@type": "JobPosting",
     "title": "Go-to-Market & Marketing (Contract)",
-    "description": "Bring our livestream TTS tool to market. Identify users, drive adoption, and recruit honest reviewers. Performance-based compensation.",
+    "description": "Bring Beim Goods privacy first livestream TTS tool to market. The TTS is platform agnostic. It works for streaming platforms (e.g. Twitch), live commerce platforms (e.g. Whatnot), and meeting software (e.g. Zoom). Identify users, drive adoption, and recruit honest reviewers. Performance-based compensation.",
     "hiringOrganization": {
       "@type": "Organization",
       "name": "BEIM GOODS",
@@ -78,10 +78,13 @@
       z-index: 1;
     }
 
-    /* ── BRAND BLOCK (top-center) ── */
+    /* ── BRAND BLOCK ── */
     .brand-block {
-      position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%);
+      position: fixed; top: 0; left: 0; right: 0;
       z-index: 10; text-align: center; white-space: nowrap;
+      padding: 1.5rem 0 0.8rem;
+      background: rgba(5,5,8,0.75);
+      backdrop-filter: blur(10px);
     }
     .brand-name {
       font-family: 'Roboto', sans-serif;
@@ -105,7 +108,7 @@
       flex: 1;
       max-width: 620px;
       margin: 0 auto;
-      padding: 7rem 2rem 5rem;
+      padding: 7rem 2rem 7rem;
       animation: fadeUp 0.7s ease both;
     }
 
@@ -243,22 +246,40 @@
     .back-link:hover { color: rgba(255,255,255,0.55); }
 
     /* ── BOTTOM BAR ── */
-    .bottom-bar {
-      position: relative; z-index: 10;
-      height: 3.1rem;
-      display: flex; align-items: center;
-      justify-content: center; gap: 1.6rem;
+    .bottom-bar-wrap {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 10;
       border-top: 1px solid rgba(255,255,255,0.06);
       backdrop-filter: blur(10px);
-      background: rgba(5,5,8,0.55);
+      background: rgba(5,5,8,0.75);
+    }
+    .bottom-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.3rem 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 0.9rem 2rem;
     }
     .bottom-bar a {
       color: rgba(255,255,255,0.26); text-decoration: none;
       font-size: 0.61rem; letter-spacing: 0.09em; text-transform: uppercase;
       transition: color 0.2s;
+      line-height: 1.8;
     }
     .bottom-bar a:hover { color: rgba(255,255,255,0.6); }
-    .bottom-sep { color: rgba(255,255,255,0.1); font-size: 0.65rem; }
+    .bottom-col {
+      display: flex; flex-direction: column;
+    }
+    .bottom-col:nth-child(2) { text-align: center; }
+    .bottom-col:nth-child(3) { text-align: right; }
+    .disclaimer {
+      text-align: center;
+      font-size: 0.44rem; font-weight: 300;
+      color: rgba(255,255,255,0.18);
+      padding: 0 2rem 0.6rem;
+      line-height: 1.4;
+    }
 
     /* ── KEYFRAMES ── */
     @keyframes fadeUp {
@@ -272,7 +293,7 @@
 
     /* ── MOBILE ── */
     @media (max-width: 600px) {
-      .content { padding: 6.5rem 1.4rem 4rem; }
+      .content { padding: 6.5rem 1.4rem 8rem; }
     }
   </style>
 </head>
@@ -281,6 +302,7 @@
   <div class="bg" role="img" aria-label="Atmospheric dark background"></div>
   <div class="overlay"></div>
 
+  <!-- Brand block -->
   <div class="brand-block">
     <a href="/" class="brand-name">BEIM GOODS</a>
     <span class="brand-tagline">Where Digital Meets Reality</span>
@@ -343,15 +365,26 @@
 
   </main>
 
-  <footer class="bottom-bar" role="contentinfo">
-    <a href="/Beim_Goods_Accessibility_TTS_Tool_phase1_Terms_of_Service.pdf"
-       target="_blank" rel="noopener">Terms of Service</a>
-    <span class="bottom-sep" aria-hidden="true">&middot;</span>
-    <a href="/Beim_Goods_Accessibility_TTS_Tool_phase1_Privacy_Policy.pdf"
-       target="_blank" rel="noopener">Privacy Policy</a>
-    <span class="bottom-sep" aria-hidden="true">&middot;</span>
-    <a href="mailto:info@beimgoods.com">info@beimgoods.com</a>
-  </footer>
+  <!-- Bottom bar -->
+  <div class="bottom-bar-wrap" role="contentinfo">
+    <nav class="bottom-bar">
+      <div class="bottom-col">
+        <a href="/">Home</a>
+        <a href="/blog/">Blogs</a>
+      </div>
+      <div class="bottom-col">
+        <a href="/Beim_Goods_Accessibility_TTS_Tool_phase1_Terms_of_Service.pdf"
+           target="_blank" rel="noopener">Terms of Service</a>
+        <a href="/Beim_Goods_Accessibility_TTS_Tool_phase1_Privacy_Policy.pdf"
+           target="_blank" rel="noopener">Privacy Policy</a>
+      </div>
+      <div class="bottom-col">
+        <a href="/job/">We're Hiring</a>
+        <a href="mailto:info@beimgoods.com">info@beimgoods.com</a>
+      </div>
+    </nav>
+    <p class="disclaimer">All product names, logos, and trademarks are the property of their respective owners. Beim Goods is not affiliated with or endorsed by these companies.</p>
+  </div>
 
 </body>
 </html>
