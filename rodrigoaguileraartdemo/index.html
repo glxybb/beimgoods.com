@@ -7,7 +7,6 @@
 <meta name="description" content="952 pixels. Free. 24-hour display. Claim yours.">
 <meta name="robots" content="noindex, nofollow">
 
-<!-- Security headers (GitHub Pages sets some; these cover what <meta> can) -->
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Content-Security-Policy"
   content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://storage.googleapis.com https://*.run.app;">
@@ -26,10 +25,10 @@
     --surface-2: #0a0a12;
     --border: #1e1e30;
     --border-2: #2a2a44;
-    --accent: #e0699a;
-    --accent-hover: #cf5a8b;
-    --accent-dim: rgba(224,105,154,0.08);
-    --accent-border: rgba(224,105,154,0.2);
+    --accent: #35a89b;
+    --accent-hover: #2b8f84;
+    --accent-dim: rgba(53,168,155,0.08);
+    --accent-border: rgba(53,168,155,0.2);
     --success: #34d399;
     --text: #e8e8f0;
     --text-2: #c8c8d4;
@@ -67,9 +66,9 @@
 
   .grid-frame {
     display: inline-block; padding: 3px;
-    background: linear-gradient(135deg, #e0699a, #8e4c57);
+    background: linear-gradient(135deg, #04608c, #35a89b 55%, #8fa481);
     border-radius: 4px;
-    box-shadow: 0 0 40px rgba(224,105,154,0.15), 0 0 80px rgba(224,105,154,0.05);
+    box-shadow: 0 0 40px rgba(53,168,155,0.15), 0 0 80px rgba(53,168,155,0.05);
   }
   .grid {
     display: grid; grid-template-columns: repeat(28, var(--px));
@@ -120,7 +119,7 @@
     animation: fadeIn 0.2s ease-out;
   }
   @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(224,105,154,0.4); } 50% { box-shadow: 0 0 0 6px rgba(224,105,154,0); } }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(53,168,155,0.4); } 50% { box-shadow: 0 0 0 6px rgba(53,168,155,0); } }
 
   .modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
   .modal-head h2 { font-size: 17px; font-weight: 600; color: var(--text); }
@@ -218,20 +217,20 @@
     min-height: 380px;
   }
   .placard-front {
-    background: #fbeef5;
-    border: 1px solid #f2dce8;
+    background: #f1f4e3;
+    border: 1px solid #e0e7cd;
     padding: 24px 28px;
-    color: #2a1020;
+    color: #16241f;
   }
   .placard-back {
     position: absolute;
     top: 0; left: 0; right: 0;
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
-    background: #fbeef5;
-    border: 1px solid #f2dce8;
+    background: #f1f4e3;
+    border: 1px solid #e0e7cd;
     padding: 28px 32px;
-    color: #2a1020;
+    color: #16241f;
     min-height: 380px;
   }
   .placard-title {
@@ -239,7 +238,7 @@
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #8a4060;
+    color: #2f6b5e;
     margin-bottom: 20px;
   }
   .placard-steps {
@@ -253,7 +252,7 @@
     padding: 10px 0;
     font-family: var(--mono);
     font-size: 13px;
-    color: #5c3448;
+    color: #3d5a4f;
     transition: color 0.3s;
     border-bottom: none;
   }
@@ -261,33 +260,33 @@
     border-bottom: none;
   }
   .placard-steps li.done {
-    color: #2a1020;
+    color: #16241f;
   }
   .step-num {
     width: 26px;
     height: 26px;
     border-radius: 50%;
     border: none;
-    background: #f4e0ea;
+    background: #e3ead4;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: var(--mono);
     font-size: 12px;
-    color: #8a4060;
+    color: #2f6b5e;
     flex-shrink: 0;
     transition: all 0.3s;
   }
   .placard-steps li.done .step-num {
-    background: #ecd0de;
-    color: #a3506f;
+    background: #d4dfc2;
+    color: #35786a;
   }
   .step-reveal {
     cursor: pointer;
     transition: color 0.2s;
   }
   .step-reveal:hover {
-    color: #2a1020;
+    color: #16241f;
   }
   .step-reveal.locked {
     opacity: 0.4;
@@ -302,7 +301,7 @@
     font-family: 'Georgia', 'Times New Roman', serif;
     font-size: 15px;
     font-style: italic;
-    color: #8a4060;
+    color: #2f6b5e;
     margin-bottom: 20px;
     letter-spacing: 0.5px;
   }
@@ -310,25 +309,25 @@
     font-family: 'Georgia', 'Times New Roman', serif;
     font-size: 14px;
     line-height: 1.8;
-    color: #3a1c2c;
+    color: #22332c;
     margin-bottom: 14px;
   }
   .placard-back p:last-of-type {
     margin-bottom: 0;
     font-style: italic;
-    color: #8a4060;
+    color: #2f6b5e;
   }
   .placard-back .placard-flip-back {
     margin-top: 18px;
     font-family: var(--mono);
     font-size: 11px;
-    color: #a5738a;
+    color: #6e8a7c;
     cursor: pointer;
     text-align: center;
     transition: color 0.2s;
   }
   .placard-back .placard-flip-back:hover {
-    color: #5c3448;
+    color: #3d5a4f;
   }
 
   /* Footer */
@@ -363,8 +362,8 @@
 <body>
 
   <div class="header">
-    <h1><span>r</span>odrigo <span>a</span>guilera <span>a</span>rt <span>d</span>emo</h1>
-    <p>claim a pixel · free · 24h</p>
+    <h1><span>r</span>odrigo <span>a</span>guilera <span>d</span>emo</h1>
+    <p>claim a pixel for 24h</p>
   </div>
 
   <div class="grid-frame">
@@ -398,7 +397,7 @@
 
       <!-- Back: The message -->
       <div class="placard-back">
-        <div class="placard-back-title">The Beim Pixel Project @ RodrigoAguileraArtDemo</div>
+        <div class="placard-back-title">The Beim Pixel Project @ RodrigoAguileraDemo</div>
         <p>A 28×34 canvas, open to anyone. One click changes one pixel for 24 hours.</p>
         <p>One pixel is a small act. Alone, each person pulls the canvas in a different direction. Over time, the painting drifts into noise.</p>
         <p>But when a group coordinates, they compose something new, e.g. a painting, a message, a shared vision. What no individual can create alone, a collective can.</p>
@@ -433,10 +432,10 @@
         </div>
         <div class="color-row">
           <div class="color-well">
-            <input type="color" id="color-input" value="#ff4444">
+            <input type="color" id="color-input" value="#e7c25b">
           </div>
           <div>
-            <div class="color-hex" id="color-hex">#FF4444</div>
+            <div class="color-hex" id="color-hex">#E7C25B</div>
             <div class="color-hint">Tap the swatch to pick</div>
           </div>
         </div>
@@ -521,7 +520,8 @@ var POLL_MS = 5 * 60 * 1000; // refresh every 5 minutes
 var GW = 28;              // columns
 var GH = 34;              // rows
 var TOTAL = GW * GH;      // 952
-var QUICK = ["#ff4444","#ff8c00","#ffdd00","#44cc44","#00aaff","#e0699a","#ff69b4","#ffffff","#888888","#000000"];
+// Swatches sampled from the artwork itself
+var QUICK = ["#04608c","#196574","#35a89b","#56825c","#d1e5b5","#e7c25b","#c8c3a2","#ccab97","#b4887d","#623c4c","#ffffff","#000000"];
 
 // Default image: 28x34 artwork, one 6-digit hex per pixel, row-major.
 // All 952 pixels are distinct colours, so a palette+index map would be
@@ -536,7 +536,7 @@ var DEFAULTS = (function () {
 // ── State ──
 var paidPixels = {};   // { "index": "#color" } — from server JSON
 var selectedIdx = null;
-var selectedColor = "#ff4444";
+var selectedColor = "#e7c25b";
 
 // ── Fetch pixel data from server ──
 function fetchPixels() {
