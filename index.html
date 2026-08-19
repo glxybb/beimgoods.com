@@ -14,91 +14,110 @@
   <meta property="og:url" content="https://beimgoods.com/" />
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://beimgoods.com/#org",
-        "name": "BEIM GOODS",
-        "slogan": "Where Digital Meets Reality",
-        "url": "https://beimgoods.com",
-        "email": "info@beimgoods.com",
-        "description": "BEIM GOODS is Where Digital Meets Reality. Beim Goods Livestream TTS works for streaming platforms like Twitch, Kick, Streamyard, and it also works for corporate meeting services like Zoom and Google Meet. Beim Goods Livestream TTS also works for live commerce, live selling, live auction platforms like Whatnot, Poshmark, eBay Live. Beim Goods Livestream TTS is platform agnostic. Beim Goods Livestream TTS respects user privacy, and does not ingest user data, nor sell user data. It does not track device fingerprints, no IP tracking. Absolutely no cookie stuffing. Phase 1 release delivers a TTS browser extension for live commerce sellers (eBay and Whatnot), livestreamers (Twitch Kick). Phase 2 release introduces a hardware suite that enhances real time streamer audience interaction."
-      },
-      {
-        "@type": "SoftwareApplication",
-        "@id": "https://beimgoods.com/#tts-extension",
-        "name": "BEIM GOODS Livestream TTS, Voice for Every Stream, Never miss a comment",
-        "alternateName": "BEIM GOODS Livestream TTS accessablity Phase 1",
-        "applicationCategory": "BrowserApplication",
-        "image": "https://beimgoods.com/tts-livestreamkit-product.png",
-        "operatingSystem": "windows, chromeOS, macOS",
-        "description": "browser extension delivering real-time text-to-speech for live commerce streams and livestream on Streamyard, Whatnot, eBay Live, Poshmark Live, Youtube Live, and more. Browser-native speechSynthesis, no server, zero latency. Zero personal data stored, no spying, no IP tracking; billing via Stripe. 30-day free trial.",
-        "offers": {
-          "@type": "Offer",
-          "availability": "https://schema.org/InStock",
-          "trialDuration": "P30D",
-          "seller": { "@id": "https://beimgoods.com/#org" }
-        },
-        "featureList": [
-          "Real-time TTS on Streamyard, Whatnot, eBay Live, Poshmark Live, Youtube Live, Zoom, Google Meet, and more",
-          "Browser-native speech, no server, zero latency",
-          "Zero personal data",
-          "30-day free trial, billed via Stripe",
-          "Supports Microsoft Edge",
-          "Supports Google Chrome",
-          "Safari and Firefox support coming soon"
-        ],
-        "publisher": { "@id": "https://beimgoods.com/#org" }
-      },
-      {
-        "@type": "Product",
-        "name": "BEIM GOODS Hardware for Every Stream",
-        "alternateName": "BEIM GOODS Phase 2",
-        "description": "Phase 2 product coming soon from BEIM GOODS. More features bridging the digital and physical worlds. Details to be announced.",
-        "image": "https://beimgoods.com/beimgoodsBackground.png",
-        "brand": { "@type": "Brand", "name": "BEIM GOODS" }
-      },
-      {
-        "@type": "Product",
-        "@id": "https://beimgoods.com/#tts-kit",
-        "name": "BEIM GOODS TTS Livestream Kit",
-        "description": "Wireless earbuds paired with TTS software for livestreamers on Twitch kick and Streamyard, and live sellers on whatnot and eBay Live and Poshmark. Hear every chat comment read aloud, hands free. Partner samples available. Large volume discounts available.",
-        "image": "https://beimgoods.com/tts-livestreamkit-product.png",
-        "brand": { "@type": "Brand", "name": "BEIM GOODS" },
-        "offers": {
-          "@type": "Offer",
-          "price": "135.00",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "url": "https://beimgoods.com/ttskit/",
-          "seller": { "@id": "https://beimgoods.com/#org" },
-          "shippingDetails": {
-            "@type": "OfferShippingDetails",
-            "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
-            "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
-            "deliveryTime": {
-              "@type": "ShippingDeliveryTime",
-              "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 3, "unitCode": "DAY" },
-              "transitTime": { "@type": "QuantitativeValue", "minValue": 3, "maxValue": 7, "unitCode": "DAY" }
-            }
-          },
-          "hasMerchantReturnPolicy": {
-            "@type": "MerchantReturnPolicy",
-            "applicableCountry": "US",
-            "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-          }
+
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://beimgoods.com/#org",
+      "name": "BEIM GOODS",
+      "slogan": "Where Digital Meets Reality",
+      "url": "https://beimgoods.com",
+      "email": "info@beimgoods.com",
+      "description": "BEIM GOODS is Where Digital Meets Reality. Beim Goods Livestream TTS works for streaming platforms like Twitch, Kick, Streamyard, and it also works for corporate meeting services like Zoom and Google Meet. Beim Goods Livestream TTS also works for live commerce, live selling, live auction platforms like Whatnot, Poshmark, eBay Live. Beim Goods Livestream TTS is platform agnostic. Beim Goods Livestream TTS respects user privacy, and does not ingest user data, nor sell user data. It does not track device fingerprints, no IP tracking. Absolutely no cookie stuffing. Phase 1 release delivers a TTS browser extension for live commerce sellers (eBay and Whatnot), livestreamers (Twitch Kick). Phase 2 release introduces a hardware suite that enhances real time streamer audience interaction."
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://beimgoods.com/#tts-extension",
+      "name": "BEIM GOODS Livestream TTS, Voice for Every Stream, Never miss a comment",
+      "alternateName": "BEIM GOODS Livestream TTS Accessibility Phase 1",
+      "applicationCategory": "BrowserApplication",
+      "image": "https://beimgoods.com/tts-livestreamkit-product.png",
+      "operatingSystem": "Windows, ChromeOS, macOS",
+      "url": "https://beimgoods.com/",
+      "downloadUrl": "https://chromewebstore.google.com/detail/gnnabdhnogldhepghlbfcpfigcafcbfp",
+      "softwareVersion": "1.3.7",
+      "fileSize": "66KB",
+      "description": "Browser extension delivering real-time text-to-speech for live commerce streams and livestreams on Streamyard, Whatnot, eBay Live, Poshmark Live, YouTube Live, Zoom, Google Meet, Amazon Live, Twitch, and Kick. Browser-native speechSynthesis, no server, zero latency. Zero personal data stored, no spying, no IP tracking; billing via Stripe. 30-day free trial, then $1 per month.",
+      "offers": {
+        "@type": "Offer",
+        "price": "1.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://chromewebstore.google.com/detail/gnnabdhnogldhepghlbfcpfigcafcbfp",
+        "seller": {
+          "@type": "Organization",
+          "@id": "https://beimgoods.com/#org",
+          "name": "BEIM GOODS"
         }
       },
-      {
-        "@type": "WebPage",
-        "@id": "https://beimgoods.com/#webpage",
-        "url": "https://beimgoods.com/",
-        "name": "BEIM GOODS Where Digital Meets Reality"
+      "featureList": [
+        "Real-time TTS on Streamyard, Whatnot, eBay Live, Poshmark Live, YouTube Live, Zoom, Google Meet, Amazon Live, Twitch, Kick",
+        "Browser-native speech, no server, zero latency",
+        "Zero personal data, no IP tracking, no cookie stuffing",
+        "Lightweight, only 66KB",
+        "No OBS required",
+        "30-day free trial, billed via Stripe",
+        "Supports Chromium based browsers such as Google Chrome",
+        "Supports Chromium based browsers such as Microsoft Edge",
+        "Safari and Firefox support coming soon"
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://beimgoods.com/#org",
+        "name": "BEIM GOODS"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://beimgoods.com/#tts-kit",
+      "name": "BEIM GOODS TTS Livestream Kit",
+      "description": "Wireless earbuds paired with TTS software for livestreamers on Twitch, Kick, and Streamyard, and live sellers on Whatnot, eBay Live, and Poshmark. Hear every chat comment read aloud, hands free. Partner samples available. Large volume discounts available.",
+      "image": "https://beimgoods.com/tts-livestreamkit-product.png",
+      "brand": { "@type": "Brand", "name": "BEIM GOODS" },
+      "offers": {
+        "@type": "Offer",
+        "price": "135.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://beimgoods.com/ttskit/",
+        "seller": {
+          "@type": "Organization",
+          "@id": "https://beimgoods.com/#org",
+          "name": "BEIM GOODS"
+        },
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
+          "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 3, "unitCode": "DAY" },
+            "transitTime": { "@type": "QuantitativeValue", "minValue": 3, "maxValue": 14, "unitCode": "DAY" }
+          }
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "US",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+        }
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://beimgoods.com/#webpage",
+      "url": "https://beimgoods.com/",
+      "name": "BEIM GOODS Where Digital Meets Reality",
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://beimgoods.com/#org",
+        "name": "BEIM GOODS"
+      }
+    }
+  ]
+}
+
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
