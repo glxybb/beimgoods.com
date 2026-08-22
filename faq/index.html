@@ -21,6 +21,19 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "url": "https://beimgoods.com/faq/",
+    "publisher": {
+      "@type": "Organization",
+      "@id": "https://beimgoods.com/#org",
+      "name": "BEIM GOODS",
+      "url": "https://beimgoods.com"
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "@id": "https://beimgoods.com/#website",
+      "name": "BEIM GOODS",
+      "url": "https://beimgoods.com",
+      "publisher": { "@id": "https://beimgoods.com/#org" }
+    },
     "mainEntity": [
       {
         "@type": "Question",
@@ -249,6 +262,15 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 0.6rem;
+    }
+
+    /* ── POST DATE ── */
+    .post-date {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.32);
     }
 
     /* ── POST BODY ── */
