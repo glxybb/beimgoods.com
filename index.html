@@ -4,7 +4,7 @@
   <link rel="icon" href="/BGfavicon16.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BEIM GOODS, Where Digital Meets Reality</title>
+  <title>BEIM GOODS Livestream TTS, It Reads Chats Aloud, Where Digital Meets Reality</title>
   <meta name="description" content="BEIM GOODS Livestream TTS, Privacy First, reads chat messages aloud in real time on Whatnot, eBay Live, YouTube Live, Zoom, StreamYard, Poshmark, Twitch, Kick, Amazon Live, Google Meet. Where Digital Meets Reality. Phase 1: Livestream TTS browser extension for live commerce and streamers, 30-day free trial via Stripe. Phase 2: more features, coming soon." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://beimgoods.com/" />
@@ -22,10 +22,10 @@
       "@type": "Organization",
       "@id": "https://beimgoods.com/#org",
       "name": "BEIM GOODS",
-      "slogan": "Where Digital Meets Reality",
+      "slogan": "It Reads Chats Aloud, Where Digital Meets Reality",
       "url": "https://beimgoods.com",
       "email": "info@beimgoods.com",
-      "description": "BEIM GOODS is Where Digital Meets Reality. Beim Goods Livestream TTS works for streaming platforms like Twitch, Kick, Streamyard, and it also works for corporate meeting services like Zoom and Google Meet. Beim Goods Livestream TTS also works for live commerce, live selling, live auction platforms like Whatnot, Poshmark, eBay Live. Beim Goods Livestream TTS is platform agnostic. Beim Goods Livestream TTS respects user privacy, and does not ingest user data, nor sell user data. It does not track device fingerprints, no IP tracking. Absolutely no cookie stuffing. Phase 1 release delivers a TTS browser extension for live commerce sellers (eBay and Whatnot), livestreamers (Twitch Kick). Phase 2 release introduces a hardware suite that enhances real time streamer audience interaction."
+      "description": "BEIM GOODS Livestream TTS is Where Digital Meets Reality. Beim Goods Livestream TTS works for streaming platforms like Twitch, Kick, Streamyard, and it also works for corporate meeting services like Zoom and Google Meet. Beim Goods Livestream TTS also works for live commerce, live selling, live auction platforms like Whatnot, Poshmark, eBay Live. Beim Goods Livestream TTS is platform agnostic. Beim Goods Livestream TTS respects user privacy, and does not ingest user data, nor sell user data. It does not track device fingerprints, no IP tracking. Absolutely no cookie stuffing. Phase 1 release delivers a TTS browser extension for live commerce sellers (eBay and Whatnot), livestreamers (Twitch Kick). Phase 2 release introduces a hardware suite that enhances real time streamer audience interaction."
     },
     {
       "@type": "SoftwareApplication",
@@ -136,11 +136,10 @@
     }
 
     html, body {
-      height: 100%;
+      min-height: 100%;
       font-family: 'Inter', sans-serif;
       background: #050508;
       color: #fff;
-      overflow: hidden;
     }
 
     /* ── BACKGROUND ── */
@@ -160,22 +159,11 @@
       z-index: 1;
     }
 
-    /* ── VERTICAL DIVIDER ── */
-    .divider {
-      position: fixed; left: 50%; top: 0; bottom: 0; width: 1px;
-      background: linear-gradient(to bottom,
-        transparent 4%,
-        rgba(255,255,255,0.09) 16%,
-        rgba(255,255,255,0.09) 84%,
-        transparent 96%);
-      transform: translateX(-50%);
-      z-index: 3;
-    }
-
     /* ── BRAND BLOCK (top-center) ── */
     .brand-block {
-      position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%);
+      position: relative;
       z-index: 10; text-align: center; white-space: nowrap;
+      padding-top: 1.5rem;
     }
     .brand-name {
       font-family: 'Roboto', sans-serif;
@@ -192,38 +180,27 @@
       display: block; margin-top: 0.3rem;
     }
 
-    /* ── MAIN GRID ── */
+    /* ── MAIN (single column, stacked) ── */
     .page {
-      position: fixed; inset: 0; z-index: 2;
-      display: grid; grid-template-columns: 1fr 1fr;
-      padding-top: 5.2rem;
-      padding-bottom: 5.5rem;
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column;
+      padding-top: 3.5rem;
+      padding-bottom: 3rem;
     }
 
-    /* ── PANELS ── */
+    /* ── PANELS (stacked sections) ── */
     .panel {
       display: flex; flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 2rem 6vw 1.5rem;
+      padding: 3rem 6vw;
       text-align: center;
-      overflow-y: auto;
     }
-    .panel-left  { padding-left: 10vw; padding-right: 2vw;  }
-    .panel-right { padding-left: 2vw;  padding-right: 10vw; }
-
-    /* ── PANEL SCROLLBARS (near-transparent) ── */
-    .panel {
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,0.07) transparent;
+    .panel-right {
+      border-top: 1px solid rgba(255,255,255,0.09);
+      margin-top: 1rem;
+      padding-top: 4rem;
     }
-    .panel::-webkit-scrollbar { width: 4px; }
-    .panel::-webkit-scrollbar-track { background: transparent; }
-    .panel::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.07);
-      border-radius: 4px;
-    }
-    .panel:hover::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.14); }
 
     /* ── BADGES ── */
     .badge {
@@ -281,6 +258,20 @@
     .panel-left  .panel-sub { animation-delay: 0.32s; }
     .panel-right .panel-sub { animation-delay: 0.47s; }
 
+/* ── PANEL SUBHEAD (question-style H2) ── */
+.panel-subhead {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem; font-weight: 600;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 0.6rem;
+  max-width: 500px;
+  animation: fadeUp 0.7s ease 0.28s both;
+}
+
+
+
+
+    
     /* ── FEATURE LIST ── */
     .features {
       list-style: none; text-align: left; width: 100%; max-width: 500px;
@@ -344,7 +335,7 @@
 
     /* ── BOTTOM BAR ── */
     .bottom-bar-wrap {
-      position: fixed; bottom: 0; left: 0; right: 0;
+      position: relative;
       z-index: 10;
       border-top: 1px solid rgba(255,255,255,0.06);
       backdrop-filter: blur(10px);
@@ -404,192 +395,6 @@
     .speaking-bar:nth-child(3) { height: 8px;  animation-delay: 0.27s; }
     .speaking-bar:nth-child(4) { height: 14px; animation-delay: 0.08s; }
 
-    /* ══════════════════════════════════════════
-       KIT POPUP MODAL
-       ══════════════════════════════════════════ */
-    .kit-backdrop {
-      position: fixed; inset: 0; z-index: 100;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(8px);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-    .kit-backdrop.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .kit-modal {
-      position: relative;
-      background: #e8dff5;
-      border: 1px solid rgba(200, 160, 255, 0.18);
-      border-radius: 16px;
-      width: 90vw;
-      max-width: 420px;
-      overflow: hidden;
-      transform: translateY(20px) scale(0.97);
-      transition: transform 0.3s ease;
-    }
-    .kit-backdrop.visible .kit-modal {
-      transform: translateY(0) scale(1);
-    }
-
-    .kit-close {
-      position: absolute; top: 12px; right: 12px;
-      width: 32px; height: 32px; border-radius: 50%;
-      background: rgba(0, 0, 0, 0.08);
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      color: rgba(0, 0, 0, 0.5);
-      font-size: 16px; line-height: 1;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.2s;
-      z-index: 2;
-    }
-    .kit-close:hover {
-      background: rgba(0, 0, 0, 0.15);
-      color: #1a1a2e;
-    }
-
-    .kit-image-wrap {
-      width: 100%;
-      background: #ddd2ed;
-      display: flex; align-items: center; justify-content: center;
-      padding: 16px;
-    }
-    .kit-image-wrap img {
-      width: 100%;
-      max-height: 180px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-
-    .kit-body {
-      padding: 24px 28px 28px;
-    }
-
-    .kit-badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 0.54rem; font-weight: 500;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--purple);
-      background: var(--purple-dim);
-      border: 1px solid var(--purple-border);
-      padding: 0.2rem 0.7rem; border-radius: 100px;
-      margin-bottom: 12px;
-    }
-    .kit-badge .badge-dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--purple); animation: pulse 2s infinite;
-    }
-
-    .kit-title {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.2rem; font-weight: 700;
-      color: #1a1a2e;
-      margin-bottom: 8px;
-    }
-
-    .kit-desc {
-      font-size: 0.78rem; font-weight: 300;
-      color: rgba(255, 255, 255, 0.45);
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .kit-includes {
-      margin-bottom: 20px;
-      padding: 14px 16px;
-      background: rgba(91, 45, 145, 0.08);
-      border: 1px solid rgba(91, 45, 145, 0.15);
-      border-radius: 10px;
-    }
-    .kit-includes-label {
-      font-size: 0.58rem; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: rgba(91, 45, 145, 0.7);
-      margin-bottom: 8px;
-    }
-    .kit-includes-item {
-      display: flex;
-      font-size: 0.72rem; font-weight: 300;
-      color: rgba(0, 0, 0, 0.6);
-      padding: 4px 0; align-items: center; gap: 8px;
-    }
-    .kit-includes-item::before {
-      content: '';
-      width: 4px; height: 4px; border-radius: 50%;
-      background: rgba(91, 45, 145, 0.5);
-      flex-shrink: 0;
-    }
-
-    .kit-price-row {
-      display: flex; align-items: baseline; gap: 10px;
-      margin-bottom: 18px;
-    }
-    .kit-price {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.6rem; font-weight: 700;
-      color: #1a1a2e;
-    }
-    .kit-price-note {
-      font-size: 0.65rem; font-weight: 300;
-      color: rgba(0, 0, 0, 0.4);
-    }
-
-    /* ── WHOLESALE / PARTNER LINE ── */
-    .kit-wholesale {
-      display: flex; align-items: center; justify-content: center; gap: 7px;
-      width: 100%;
-      margin-top: 16px;
-      padding: 10px 16px;
-      background: rgba(91, 45, 145, 0.10);
-      border: 1px solid rgba(91, 45, 145, 0.28);
-      border-radius: 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(91, 45, 145, 0.95);
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    .kit-wholesale:hover {
-      background: rgba(91, 45, 145, 0.18);
-      border-color: rgba(91, 45, 145, 0.45);
-    }
-    .kit-wholesale svg {
-      width: 13px; height: 13px; flex-shrink: 0; opacity: 0.85;
-    }
-
-    .kit-buy-btn {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      width: 100%;
-      padding: 14px 20px;
-      background: linear-gradient(135deg, rgba(91, 45, 145, 0.85), rgba(91, 45, 145, 0.7));
-      border: 1px solid rgba(91, 45, 145, 0.9);
-      border-radius: 100px;
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.22s ease;
-    }
-    .kit-buy-btn:hover {
-      background: linear-gradient(135deg, rgba(91, 45, 145, 0.95), rgba(91, 45, 145, 0.8));
-      box-shadow: 0 0 24px rgba(91, 45, 145, 0.25);
-    }
-
-    .kit-shipping-note {
-      text-align: center;
-      margin-top: 10px;
-      font-size: 0.6rem; font-weight: 300;
-      color: rgba(0, 0, 0, 0.35);
-    }
-
     /* ── KEYFRAMES ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(14px); }
@@ -609,12 +414,11 @@
 
   <div class="bg" role="img" aria-label="Atmospheric dark background"></div>
   <div class="overlay"></div>
-  <div class="divider" aria-hidden="true"></div>
 
   <!-- Brand block -->
   <div class="brand-block">
     <span class="brand-name">BEIM GOODS</span>
-    <span class="brand-tagline">Where Digital Meets Reality</span>
+    <span class="brand-tagline">Livestream TTS, Reads Chats Aloud, Where Digital Meets Reality</span>
   </div>
 
   <!-- Speaking indicator -->
@@ -633,56 +437,9 @@
     </svg>
   </button>
 
-  <!-- ══════════════════════════════════════
-       KIT POPUP MODAL
-       ══════════════════════════════════════ -->
-  <div class="kit-backdrop" id="kit-backdrop" role="dialog" aria-modal="true" aria-label="TTS Livestream Kit">
-    <div class="kit-modal">
-      <button class="kit-close" id="kit-close" aria-label="Close">&times;</button>
-
-      <div class="kit-image-wrap">
-        <img src="/tts-livestreamkit-product.png" alt="Beim Goods TTS Livestream Kit — wireless earbuds and TTS software" />
-      </div>
-
-      <div class="kit-body">
-        <div class="kit-title">TTS Livestream Kit</div>
-
-        <div class="kit-includes">
-          <div class="kit-includes-label">Kit includes</div>
-          <div class="kit-includes-item">Wireless earbuds with charging case</div>
-          <div class="kit-includes-item">Beim Goods TTS software (30 days free, then $1/mo)</div>
-          <div class="kit-includes-item">Quick start guide</div>
-          <div class="kit-includes-item">Works with Streamyard, Whatnot, eBay Live, YouTube Live, Poshmark Live, Amazon Live, Twitch, Kick</div>
-        </div>
-
-        <div class="kit-price-row">
-          <span class="kit-price">$135</span>
-          <span class="kit-price-note">Free shipping</span>
-        </div>
-
-        <!-- STRIPE PAYMENT LINK -->
-        <a href="https://buy.stripe.com/6oU9AT9Yzcry50ZeAodwc01"
-           class="kit-buy-btn" target="_blank" rel="noopener noreferrer">
-          Order Kit &rarr;
-        </a>
-        <div class="kit-shipping-note">Ships to US &middot; Secure checkout via Stripe</div>
-
-        <a class="kit-wholesale"
-           href="mailto:info@beimgoods.com?subject=Wholesale%20%26%20partner%20pricing">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="m22 7-10 6L2 7"/>
-          </svg>
-          Email for wholesale &amp; partner price
-        </a>
-      </div>
-    </div>
-  </div>
-
   <main class="page" role="main">
 
-    <!-- ── LEFT PANEL: Phase 1 — TTS ── -->
+    <!-- ── SECTION: Phase 1 — TTS ── -->
     <section class="panel panel-left" aria-label="Phase 1 — TTS Browser Extension">
 
       <span class="badge badge-tts">
@@ -690,9 +447,14 @@
         Live now &middot; Phase 1 release
       </span>
 
-      <h1 class="panel-title">Real&#8209;Time TTS<br> for live selling &amp; streaming</h1>
-      <p class="panel-sub">Our browser extension brings real-time text-to-speech to live commerce. Never miss a message, never miss a beat.</p>
+      <h1 class="panel-title">Livestream TTS<br> for gaming streaming, live selling, &amp; online meetings</h1>
+      <h2 class="panel-subhead">What does Livestream TTS do?</h2>
+      <p class="panel-sub">Livestream TTS Text-to-Speech reads chats for gaming (e.g. Twitch, StreamYard, Kick, YouTube Live), live selling (e.g. Whatnot, Poshmark, eBay Live), and online meetings (e.g. Zoom and Google Meet). It reads incoming chats aloud, so 1) streamers can focus on gaming, 2) live sellers can address buyers questions hands free, and 3) meeting presenters can hear audience questions in real time. It boosts engagement and is a livestream helper. It is built for streamers, live sellers, online meeting hosts, and anyone who can't watch chat and do their job at the same time.</p>
 
+
+
+
+      
       <ul class="features" aria-label="TTS extension features">
         <li>
           <svg class="feat-icon feat-icon-tts" viewBox="0 0 24 24" fill="none"
@@ -748,7 +510,7 @@
 
     </section>
 
-    <!-- ── RIGHT PANEL: Phase 2 — Coming Soon ── -->
+    <!-- ── SECTION: Phase 2 — Coming Soon ── -->
     <section class="panel panel-right" aria-label="Phase 2 — Coming Soon">
 
       <span class="badge badge-hardware">
@@ -834,35 +596,6 @@
         setTimeout(tryAutoplay, 800);
       }
     }
-
-    /* ── Kit popup ── */
-    const kitBackdrop = document.getElementById("kit-backdrop");
-    const kitClose    = document.getElementById("kit-close");
-
-    /* Show popup after a short delay so the page loads first */
-    setTimeout(() => {
-      /* Only show if user hasn't dismissed it this session */
-      if (!sessionStorage.getItem("kit-dismissed")) {
-        kitBackdrop.classList.add("visible");
-      }
-    }, 1200);
-
-    function closeKit() {
-      kitBackdrop.classList.remove("visible");
-      sessionStorage.setItem("kit-dismissed", "1");
-    }
-
-    kitClose.addEventListener("click", closeKit);
-
-    /* Close on backdrop click (not modal click) */
-    kitBackdrop.addEventListener("click", function(e) {
-      if (e.target === kitBackdrop) closeKit();
-    });
-
-    /* Close on Escape key */
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape" && kitBackdrop.classList.contains("visible")) closeKit();
-    });
   </script>
 </body>
 </html>
