@@ -27,28 +27,18 @@
     "blogPost": [
       {
         "@type": "BlogPosting",
-        "headline": "blog about the technicalities of livestreaming. market trends, tips and tricks for hosts/streamers, step by step guide for adding TTS text to speech to various livestream platforms (such as streamyard) and meeting platforms such as Google meet",
+        "headline": "How to Add TTS Text-to-Speech to Whatnot Live Show",
         "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-whatnot-live-show/"
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "How to Add TTS Text-to-Speech to eBay Live",
-        "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-ebay-live/"
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "How to Add TTS Text-to-Speech to Poshmark Live",
-        "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-poshmark-live/"
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "How to Add TTS Text-to-Speech to YouTube Live",
-        "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-youtube-live/"
       },
       {
         "@type": "BlogPosting",
         "headline": "How to Add TTS Text-to-Speech to StreamYard",
         "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-streamyard/"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "How to Add TTS Text-to-Speech to YouTube Live",
+        "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-youtube-live/"
       },
       {
         "@type": "BlogPosting",
@@ -59,6 +49,16 @@
         "@type": "BlogPosting",
         "headline": "How to Add TTS Text-to-Speech to Google Meet",
         "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-google-meet/"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "How to Add TTS Text-to-Speech to eBay Live",
+        "url": "https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-ebay-live/"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Paid VS Free",
+        "url": "https://beimgoods.com/blog/paid-vs-free-tts/"
       }
     ]
   }
@@ -183,6 +183,15 @@
       transform: translateY(-1px);
     }
 
+    /* ── COMING SOON ROW (not a link) ── */
+    .blog-row-soon { opacity: 0.55; cursor: default; }
+    .blog-row-soon:hover {
+      background: rgba(255,255,255,0.03);
+      border-color: rgba(255,255,255,0.06);
+      box-shadow: none;
+      transform: none;
+    }
+
     .blog-row-img {
       width: 110px; height: 68px;
       object-fit: cover;
@@ -200,6 +209,7 @@
       transition: color 0.2s;
     }
     .blog-row:hover .blog-row-title { color: #fff; }
+    .blog-row-soon:hover .blog-row-title { color: rgba(255,255,255,0.88); }
 
     /* ── CTA SECTION ── */
     .cta-section {
@@ -352,11 +362,11 @@
         <h2 class="blog-row-title">Paid VS Free</h2>
       </a>
 
-      <a href="/blog/how-to-add-tts-text-to-speech-to-poshmark-live/" class="blog-row">
+      <div class="blog-row blog-row-soon">
         <img class="blog-row-img" src="/blog/img/blog-poshmark.png"
              alt="TTS on Poshmark Live" />
         <h2 class="blog-row-title"> (coming soon) How to Add TTS Text&#8209;to&#8209;Speech to Poshmark Live</h2>
-      </a>
+      </div>
 
 
       
