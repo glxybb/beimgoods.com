@@ -15,7 +15,7 @@
   
 <url>
     <loc>https://beimgoods.com/blog/</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -70,6 +70,13 @@
   <url>
     <loc>https://beimgoods.com/blog/paid-vs-free-tts/</loc>
     <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+    <url>
+    <loc>https://beimgoods.com/blog/chat-tts-speech-synthesis-online-offline/</loc>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
