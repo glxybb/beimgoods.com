@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/BGfavicon16.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+   <title>Is Your Text-to-Speech Sending Data to the Cloud? How to Check in 30 Seconds – BEIM GOODS</title>
+  <meta name="description" content="TTS speech synthesis run online and offline. A how-to to teach user to verify TTS is not leaking data to third parties" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://beimgoods.com/blog/chat-tts-speech-synthesis-online-offline/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Is Your Text-to-Speech Sending Data to the Cloud? How to Check in 30 Seconds — BEIM GOODS" />
+  <meta property="og:description" content="users prefer natural or AI speech voice, but the cost could be their privacy." />
+  <meta property="og:url" content="https://beimgoods.com/blog/chat-tts-speech-synthesis-online-offline/" />
+
+  <script type="application/ld+json">
+
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Is Your Text-to-Speech Sending Data to the Cloud?",
+  "description": "How to check whether your browser reads text aloud locally or sends it to a third-party server.",
+  "image": "https://beimgoods.com/blog/img/TTSDefaultSpeechSetting.png",
+  "datePublished": "2026-08-26",
+  "dateModified": "2026-08-26",
+  "author": { "@type": "Organization", "name": "BEIM GOODS", "url": "https://beimgoods.com" },
+  "publisher": { "@type": "Organization", "name": "BEIM GOODS", "url": "https://beimgoods.com" },
+  "mainEntityOfPage": "https://beimgoods.com/blog/chat-tts-speech-synthesis-online-offline/"
+}
+
+
+  </script>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:        rgba(200,160,255,1);
+      --purple-dim:    rgba(200,160,255,0.12);
+      --purple-border: rgba(200,160,255,0.22);
+    }
+
+    html, body {
+      min-height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #050508;
+      color: #fff;
+    }
+
+    /* ── BACKGROUND ── */
+    .bg {
+      position: fixed; inset: 0;
+      background-image: url("https://raw.githubusercontent.com/glxybb/beimgoods.com/main/beimgoodsBackground.png");
+      background-size: cover; background-position: center top;
+      filter: brightness(0.38) saturate(1.1);
+      z-index: 0;
+    }
+    .overlay {
+      position: fixed; inset: 0;
+      background: linear-gradient(135deg,
+        rgba(5,5,8,0.62) 0%,
+        rgba(5,5,8,0.08) 50%,
+        rgba(5,5,8,0.62) 100%);
+      z-index: 1;
+    }
+
+    /* ── BRAND BLOCK ── */
+    .brand-block {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 10; text-align: center; white-space: nowrap;
+      padding: 1.5rem 0 0.8rem;
+      background: rgba(5,5,8,0.25);
+      backdrop-filter: blur(10px);
+    }
+    .brand-name {
+      font-family: 'Roboto', 'Inter', sans-serif;
+      font-size: 1.1rem; font-weight: 800;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(255,255,255,0.92);
+      text-decoration: none; display: block;
+    }
+    .brand-tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.58rem; font-weight: 300;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      display: block; margin-top: 0.3rem;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .page {
+      position: relative; z-index: 2;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 7rem 1.5rem 10rem;
+    }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--purple); opacity: 0.6;
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+      transition: opacity 0.2s;
+    }
+    .back-link:hover { opacity: 1; }
+    .back-link svg {
+      width: 12px; height: 12px; stroke: currentColor;
+    }
+
+    /* ── POST HEADER ── */
+    .post-header {
+      margin-bottom: 2.5rem;
+    }
+    .post-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800; line-height: 1.2;
+      background: linear-gradient(135deg, #fff 0%, rgba(200,160,255,0.75) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.6rem;
+    }
+
+    /* ── POST BODY ── */
+
+.post-body ul {
+  padding-left: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+.post-body li {
+  margin-bottom: 0.4rem;
+}
+.post-body pre {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.2rem;
+  overflow-x: auto;
+}
+.post-body code {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  color: rgba(200,160,255,0.95);
+}
+
+
+
+    .post-body {
+      font-size: 1rem; font-weight: 300;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.85;
+    }
+
+    .post-body h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      margin: 2.2rem 0 0.8rem;
+    }
+
+    .post-body h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      margin: 1.8rem 0 0.6rem;
+    }
+
+    .post-body p {
+      margin-bottom: 1.2rem;
+    }
+
+    .post-body img {
+      display: block;
+      width: 100%;
+      max-width: 700px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      margin: 1.8rem auto;
+    }
+
+    .post-body a {
+      color: var(--purple);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: opacity 0.2s;
+    }
+    .post-body a:hover { opacity: 0.75; }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .cta-section p {
+      font-size: 0.85rem; font-weight: 300;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 1rem;
+    }
+    .cta {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 0.64rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 0.56rem 1.3rem; border-radius: 100px;
+      transition: all 0.22s ease;
+      background: var(--purple-dim); border: 1px solid var(--purple-border);
+      color: var(--purple);
+    }
+    .cta:hover {
+      background: rgba(200,160,255,0.22);
+      box-shadow: 0 0 18px rgba(200,160,255,0.14);
+    }
+    .cta-logo {
+      width: 16px; height: 16px; object-fit: contain; flex-shrink: 0;
+    }
+
+    /* ── BOTTOM BAR ── */
+    .bottom-bar-wrap {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(5,5,8,0.75);
+      backdrop-filter: blur(10px);
+    }
+    .bottom-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.3rem 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 0.9rem 2rem;
+    }
+    .bottom-bar a {
+      color: rgba(255,255,255,0.26); text-decoration: none;
+      font-size: 0.61rem; letter-spacing: 0.09em; text-transform: uppercase;
+      transition: color 0.2s;
+      line-height: 1.8;
+    }
+    .bottom-bar a:hover { color: rgba(255,255,255,0.6); }
+    .bottom-col {
+      display: flex; flex-direction: column;
+    }
+    .bottom-col:nth-child(2) { text-align: center; }
+    .bottom-col:nth-child(3) { text-align: right; }
+    .disclaimer {
+      text-align: center;
+      font-size: 0.44rem; font-weight: 300;
+      color: rgba(255,255,255,0.18);
+      padding: 0 2rem 0.6rem;
+      line-height: 1.4;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .page { padding: 6.5rem 1rem 8rem; }
+      .post-title { font-size: 1.3rem; }
+      .post-body { font-size: 0.92rem; }
+      .bottom-bar { padding: 0.9rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg" role="img" aria-label="Atmospheric dark background"></div>
+  <div class="overlay"></div>
+
+  <!-- Brand block -->
+  <div class="brand-block">
+    <a href="/" class="brand-name">BEIM GOODS</a>
+    <span class="brand-tagline">Where Digital Meets Reality</span>
+  </div>
+
+  <main class="page" role="main">
+
+    <a href="/blog/" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg>
+      All posts
+    </a>
+
+
+    <header class="post-header">
+   
+      <h1 class="post-title">Is Your Text-to-Speech Sending Data to the Cloud? How to Check in 30 Seconds</h1>
+<time class="post-date">Aug 26, 2026</time> 
+    </header>
+
+    <div class="post-body">
+
+<p>
+Do you ever wonder if your computer is passing your data to third party servers? Or, is Web Speech API offline?Today, we will share how to check if your TTS (text to speech) is passing your chat data to third party servers for language synthesis.
+</p>
+<br>
+
+<p>
+In today’s world, we are constantly connected via our phones, laptops, text, social media etc. While connectivity makes our lives easier, and our computer’s TTS’s eloquent voice becomes more comforting to the ears, the TTS speech synthesis can hand the text to third party servers for processing, and privacy could become a concern.
+</p>
+<br>
+
+<p>
+To check if TTS is processed locally, there are two methods.
+</p>
+<br>
+
+
+ <h2>Method 1. Use the browser's DevTools to check speech synthesis setting</h2>
+
+<ul>
+  <li><strong>Windows:</strong> F12 (or Fn + F12)</li>
+  <li><strong>Mac:</strong> Cmd + Option + I</li>
+  <li><strong>ChromeOS:</strong> Ctrl + Shift + I</li>
+</ul>
+<p>In the Console tab, paste this and press Enter:</p>
+<pre><code>speechSynthesis.getVoices().find(v =&gt; v.default)</code></pre>
+
+<img src="/blog/img/TTSDefaultSpeechSetting.png" alt="Chat TTS speech synthesis setting" />
+
+<ul>
+<li>Note in this screenshot, this example computer’s setting is <strong>David</strong>, and <strong>localService: true</strong>. </li>
+<li>This is this example computer’s default voice, and it's local.</li>
+</ul>
+<br>
+
+
+ <h2>Method 2. Use OS’s Speech setting to check browser's speech synthesis setting</h2>
+
+<ul>
+<li>Settings → Time & language → Speech → <strong>Voices</strong> → pick from the dropdown. </li>
+<li>Speech voices available via the OS could be processed locally, or could be sent to a remote server. Check the word ‘Online’, and users can always use Method 1 to confirm the locality of the speech synthesis function.</li>
+</ul>
+<br>
+
+<p>
+If the user’s localService indicates ‘false’, the user can take actions to modify the default speech setting.
+</p>
+<br>
+
+<p>
+  To set up Windows TTS voices, see
+  <a href="https://support.microsoft.com/en-US/accessibility/windows/narrator/appendix-a-supported-languages-and-voices"
+     target="_blank" rel="noopener noreferrer">Microsoft's supported languages and voices</a>.
+
+  For ChromeOS, see
+  <a href="https://support.google.com/chromebook/answer/11221616?hl=en"
+     target="_blank" rel="noopener noreferrer">Google's text-to-speech settings guide</a>.
+</p>
+<br>
+
+<h2>What this means for Beim Goods Livestream Chat TTS</h2>
+
+<p>
+  Livestream Chat TTS extension reads chat aloud using whichever voice user selected, so the user’s voice choice is the privacy choice. Pick a local voice and the text never leaves the machine. Either way, chat text is never transmitted to Beim Goods servers.
+</p>
+
+<p>
+  Have more questions? Visit our <a href="https://beimgoods.com/faq/">FAQ</a>, or
+  see our <a href="https://beimgoods.com/blog/">blog</a> for guides on enabling
+  Chat TTS on a specific platform.
+</p>
+
+<br>
+
+
+ </div>
+
+    <div class="cta-section">
+      <p>Ready to try it? 30&#8209;day free trial, no card required to install.</p>
+      <a href="https://chromewebstore.google.com/detail/gnnabdhnogldhepghlbfcpfigcafcbfp"
+         class="cta" target="_blank" rel="noopener noreferrer">
+        <img class="cta-logo" src="/chrome-store-logo.png" alt="Chrome Web Store icon" />
+        Get Beim Goods Livestream Chat TTS &rarr;
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar-wrap" role="contentinfo">
+    <nav class="bottom-bar">
+      <div class="bottom-col">
+        <a href="/">Home</a>
+        <a href="/blog/">Blogs</a>
+        <a href="/faq/">FAQ</a>
+      </div>
+      <div class="bottom-col">
+        <a href="/Beim_Goods_Accessibility_TTS_Tool_phase1_Terms_of_Service.pdf"
+           target="_blank" rel="noopener">Terms of Service</a>
+        <a href="/Beim_Goods_Accessibility_TTS_Tool_phase1_Privacy_Policy.pdf"
+           target="_blank" rel="noopener">Privacy Policy</a>
+      </div>
+      <div class="bottom-col">
+        <a href="/job/">We're Hiring</a>
+        <a href="mailto:info@beimgoods.com">info@beimgoods.com</a>
+      </div>
+    </nav>
+    <p class="disclaimer">All product names, logos, and trademarks are the property of their respective owners. Beim Goods is not affiliated with or endorsed by these companies.</p>
+  </div>
+
+</body>
+</html>
+
+
+
+
