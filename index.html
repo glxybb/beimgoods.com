@@ -28,7 +28,7 @@
       "description": "BEIM GOODS Livestream Chat TTS is Where Digital Meets Reality. Beim Goods Livestream Chat TTS reads incoming chats aloud. It works for streaming platforms like Twitch, Kick, Streamyard, and it also works for corporate meeting services like Zoom and Google Meet. Beim Goods Livestream Chat TTS also works for live commerce, live selling, live auction platforms like Whatnot, Poshmark, eBay Live. Beim Goods Livestream Chat TTS respects user privacy, and does not ingest user data, nor sell user data. It does not track device fingerprints, no IP tracking. Phase 2 release introduces a hardware suite that enhances real time streamer audience interaction."
     },
     {
-      "@type": "SoftwareApplication",
+      "@type": ["Product", "SoftwareApplication"],
       "@id": "https://beimgoods.com/#tts-extension",
       "name": "BEIM GOODS Livestream Chat TTS, Voice for Every Stream, Never miss a comment",
       "alternateName": "BEIM GOODS Livestream Chat TTS Accessibility Phase 1",
@@ -42,7 +42,14 @@
       "description": "Browser extension delivering real-time text-to-speech for live commerce streams and livestreams. Browser-native speechSynthesis, no server, zero latency. No OBS required. Zero personal data stored, no spying, no IP tracking; billing via Stripe. 30-day free trial, then $1 per month.",
       "offers": {
         "@type": "Offer",
-        "price": "1.00",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "1.00",
+          "priceCurrency": "USD",
+          "billingDuration": 1,
+          "billingIncrement": 1,
+          "unitCode": "MON"
+        },
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
         "url": "https://chromewebstore.google.com/detail/gnnabdhnogldhepghlbfcpfigcafcbfp",
@@ -109,6 +116,7 @@
       "@id": "https://beimgoods.com/#webpage",
       "url": "https://beimgoods.com/",
       "name": "BEIM GOODS, Livestream Chat TTS, Where Digital Meets Reality",
+      "mainEntity": { "@id": "https://beimgoods.com/#tts-extension" },
       "publisher": {
         "@type": "Organization",
         "@id": "https://beimgoods.com/#org",
@@ -457,7 +465,7 @@
       <h2 class="panel-subhead">How does it work?</h2>
       <p class="panel-sub">Install → Go Live → Boost Engagement</p>
 
-     <h2 class="panel-subhead">Feature hilights</h2>
+     <h2 class="panel-subhead">Feature Hilights</h2>
         
       <ul class="features" aria-label="TTS extension features">
         <li>
