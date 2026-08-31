@@ -2,38 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://beimgoods.com/</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://beimgoods.com/faq/</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
 <url>
     <loc>https://beimgoods.com/blog/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-twitch/</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-kick/</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-whatnot-live-show/</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -51,7 +51,7 @@
   </url>
   <url>
     <loc>https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-streamyard/</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -83,13 +83,13 @@
   
   <url>
     <loc>https://beimgoods.com/ttskit/</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beimgoods.com/job/</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
