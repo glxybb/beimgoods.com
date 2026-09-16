@@ -15,10 +15,19 @@
   
 <url>
     <loc>https://beimgoods.com/blog/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+ <url>
+    <loc>https://beimgoods.com/blog/chat-tts-reddit-modality-effect/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  
   <url>
     <loc>https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-twitch/</loc>
     <lastmod>2026-08-31</lastmod>
