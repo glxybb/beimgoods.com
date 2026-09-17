@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BEIM GOODS Blog</title>
+    <link>https://beimgoods.com/blog/</link>
+    <description>Livestream chat market trends, audience engagement tips, and step-by-step guides for adding text-to-speech to streaming and meeting platforms.</description>
+    <language>en-us</language>
+    <atom:link href="https://beimgoods.com/blog/feed.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>How Do I Improve Livestream Audience Engagement? The Modality Effect</title>
+      <link>https://beimgoods.com/blog/chat-tts-reddit-modality-effect/</link>
+      <guid isPermaLink="true">https://beimgoods.com/blog/chat-tts-reddit-modality-effect/</guid>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Livestreamer (Twitch, Kick), live commerce sellers (Whatnot, eBay, Poshmark), or live meeting presenters (Zoom, Google Meet) can utilize scientific process to foster a more audience engaging experience. Chat TTS is a powerful tool for livestreamers who need to respond to chat while their eyes are on the game, the product, or the slides.</description>
+      <category>livestream</category>
+      <category>audience engagement</category>
+      <category>text-to-speech</category>
+      <category>Twitch</category>
+      <category>Whatnot</category>
+      <category>eCommerce</category>
+    </item>
+
+    <item>
+      <title>How to Boost Sales on Whatnot</title>
+      <link>https://beimgoods.com/blog/how-do-I-boost-sales-on-whatnot/</link>
+      <guid isPermaLink="true">https://beimgoods.com/blog/how-do-I-boost-sales-on-whatnot/</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Whatnot Show sellers and hosts can boost sales by adopting chat TTS to enable active listening and fast replies to boost sales. Responding within 5 minutes increases conversion rates dramatically.</description>
+      <category>Whatnot</category>
+      <category>live selling</category>
+      <category>sales tips</category>
+      <category>ecommerce</category>
+    </item>
+
+    <item>
+      <title>Is Your Text-to-Speech Sending Data to the Cloud? How to Check in 30 Seconds</title>
+      <link>https://beimgoods.com/blog/chat-tts-speech-synthesis-online-offline/</link>
+      <guid isPermaLink="true">https://beimgoods.com/blog/chat-tts-speech-synthesis-online-offline/</guid>
+      <pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Your TTS voice might be sending your chat content to a third-party server for processing? Here's how to check in 30 seconds, and what to do about it.</description>
+      <category>privacy</category>
+      <category>text-to-speech</category>
+      <category>Web Speech API</category>
+      <category>how-to</category>
+    </item>
+
+    <item>
+      <title>How to Add TTS Text-to-Speech to Whatnot Live Show</title>
+      <link>https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-whatnot-live-show/</link>
+      <guid isPermaLink="true">https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-whatnot-live-show/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0000</pubDate>
+      <description>90% of live sellers work alone without a Mod to monitor chats. Missing buyer questions like "what size?" or "bundle shipping?" means missing sales. A lightweight TTS reads those questions aloud so sellers never miss a sales opportunity.</description>
+      <category>Whatnot</category>
+      <category>live selling</category>
+      <category>text-to-speech</category>
+      <category>how-to</category>
+    </item>
+
+    <item>
+      <title>Paid vs. Free — The Fine Print on Livestream Chat TTS</title>
+      <link>https://beimgoods.com/blog/paid-vs-free-tts/</link>
+      <guid isPermaLink="true">https://beimgoods.com/blog/paid-vs-free-tts/</guid>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 +0000</pubDate>
+      <description>There is no such thing as free software. Free software has hidden price tags (e.g. your privacy). A clear $1/month price means you're the customer, not the product.</description>
+      <category>privacy</category>
+      <category>text-to-speech</category>
+      <category>livestream</category>
+      <category>opinion</category>
+    </item>
+
+    <item>
+      <title>How to Add TTS Text-to-Speech to Google Meet</title>
+      <link>https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-google-meet/</link>
+      <guid isPermaLink="true">https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-google-meet/</guid>
+      <pubDate>Sun, 02 Aug 2026 00:00:00 +0000</pubDate>
+      <description>During a Google Meet presentation in fullscreen mode, the presenter can't see audience comments. This blog shows presenters how to add a lightweight TTS without the extra CPU overhead and not leaving the slides.</description>
+      <category>Google Meet</category>
+      <category>meetings</category>
+      <category>text-to-speech</category>
+      <category>how-to</category>
+    </item>
+
+    <item>
+      <title>How to Add TTS Text-to-Speech to Zoom Meetings</title>
+      <link>https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-zoom-meetings/</link>
+      <guid isPermaLink="true">https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-zoom-meetings/</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Zoom presenters in fullscreen mode can't see chat, and reading chat stresses human visual receptors and is distracting (per Modality Effect). A 70KB browser extension reads Zoom chat aloud during presentations without the performance hit.</description>
+      <category>Zoom</category>
+      <category>meetings</category>
+      <category>text-to-speech</category>
+      <category>how-to</category>
+    </item>
+
+    <item>
+      <title>How to Add TTS Text-to-Speech to YouTube Live</title>
+      <link>https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-youtube-live/</link>
+      <guid isPermaLink="true">https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-youtube-live/</guid>
+      <pubDate>Sat, 25 Jul 2026 00:00:00 +0000</pubDate>
+      <description>YouTube Live Streamers can engage better with audience by adding a lightweight TTS. This is a how-to blog. The Chat TTS works for both YouTube Live and YouTube Studio.</description>
+      <category>YouTube Live</category>
+      <category>livestream</category>
+      <category>text-to-speech</category>
+      <category>how-to</category>
+    </item>
+
+    <item>
+      <title>How to Add TTS Text-to-Speech to Twitch</title>
+      <link>https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-twitch/</link>
+      <guid isPermaLink="true">https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-twitch/</guid>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Two of the biggest pain points for Twitch streamers: CPU overhead from extra software and not being able to read chat while gaming fullscreen. This is a how-to blog to add Chat TTS, no OBS required, runs locally, minimal CPU usage.</description>
+      <category>Twitch</category>
+      <category>livestream</category>
+      <category>text-to-speech</category>
+      <category>how-to</category>
+    </item>
+
+    <item>
+      <title>How to Add TTS Text-to-Speech to Kick</title>
+      <link>https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-kick/</link>
+      <guid isPermaLink="true">https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-kick/</guid>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Kick streamers experience dropped frames, which disappoints viewer. This is a how-to blog on adding a 70KB TTS extension reads Kick chat aloud without taxing CPU or bandwidth. There is no OBS required.</description>
+      <category>Kick</category>
+      <category>livestream</category>
+      <category>text-to-speech</category>
+      <category>how-to</category>
+    </item>
+
+    <item>
+      <title>How to Add TTS Text-to-Speech to StreamYard</title>
+      <link>https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-streamyard/</link>
+      <guid isPermaLink="true">https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-streamyard/</guid>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <description>StreamYard lets streamers multistream to Facebook, Instagram, Twitch, Kick, LinkedIn and more. Here's how to add a lightweight TTS to StreamYard to hear chat across all those destinations.</description>
+      <category>StreamYard</category>
+      <category>multistreaming</category>
+      <category>text-to-speech</category>
+      <category>how-to</category>
+    </item>
+
+    <item>
+      <title>How to Add TTS Text-to-Speech to eBay Live</title>
+      <link>https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-ebay-live/</link>
+      <guid isPermaLink="true">https://beimgoods.com/blog/how-to-add-tts-text-to-speech-to-ebay-live/</guid>
+      <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
+      <description>90% of eBay Live sellers work alone with no assistant. A TTS extension reads buyer questions aloud so sellers never miss a sale.</description>
+      <category>eBay Live</category>
+      <category>live selling</category>
+      <category>live auctions</category>
+      <category>text-to-speech</category>
+      <category>how-to</category>
+    </item>
+
+  </channel>
+</rss>
