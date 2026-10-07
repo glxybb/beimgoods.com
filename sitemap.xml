@@ -66,12 +66,20 @@
   
 <url>
     <loc>https://beimgoods.com/blog/</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-     <url>
+
+  <url>
+    <loc>https://beimgoods.com/blog/live-commerce-whatnot-ebay-beimgoods-chat-tts/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://beimgoods.com/blog/running-autum-beimgoods-earbuds/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
