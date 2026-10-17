@@ -66,12 +66,20 @@
   
 <url>
     <loc>https://beimgoods.com/blog/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
 
+    <url>
+    <loc>https://beimgoods.com/blog/Reddit-ModWorldContest-beimgoods-submissions/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  
   <url>
     <loc>https://beimgoods.com/blog/holiday-gift-ideas-beimgoods-chat-tts-earbuds/</loc>
     <lastmod>2026-10-14</lastmod>
