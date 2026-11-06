@@ -348,7 +348,7 @@
 
     /* ── CTA LOGO ICONS ── */
     .cta-logo {
-      width: 16px; height: 16px; object-fit: contain; flex-shrink: 0;
+      width: 24px; height: 24px; object-fit: contain; flex-shrink: 0;
     }
 
     /* ── BOTTOM BAR ── */
@@ -426,6 +426,22 @@
     @keyframes speakBar {
       from { transform: scaleY(0.35); }
       to   { transform: scaleY(1.25); }
+    }
+
+    /* ── FIXED SETUP CTA (right side, 1/3 from bottom) ── */
+    .setup-cta-fixed {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 33.333vh;
+      z-index: 30;
+      background: #D0FE1D;
+      color: #000;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
     }
   </style>
 </head>
@@ -591,6 +607,10 @@ Livestream Chat TTS supports hundreds of languages. Such as English,
     </nav>
     <p class="disclaimer">All product names, logos, and trademarks are the property of their respective owners. Beim Goods is not affiliated with or endorsed by these companies.</p>
   </div>
+
+  <!-- Fixed setup CTA -->
+  <a href="https://chromewebstore.google.com/detail/livestream-chat-text-to-s/gnnabdhnogldhepghlbfcpfigcafcbfp"
+     class="setup-cta-fixed" target="_blank" rel="noopener noreferrer">Setup Livestream Chat TTS</a>
 
   <script>
     /* ── TTS welcome ── */
