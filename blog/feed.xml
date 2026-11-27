@@ -7,7 +7,17 @@
     <language>en-us</language>
     <atom:link href="https://beimgoods.com/blog/feed.xml" rel="self" type="application/rss+xml" />
 
+<item>
+     <title>Twitch Chat TTS not working. This Might Be The Cause</title>
+      <link>https://beimgoods.com/blog/twitch-popout-chat-tts-troubleshooting-beimgoods/</link>
+      <guid isPermaLink="true">https://beimgoods.com/blog/twitch-popout-chat-tts-troubleshooting-beimgoods/</guid>
+      <pubDate>Fri, 27 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Chat TTS works with Twitch pop-out chat. Users must use the correct pop-out chat URL. The blog offers youtube video demos and links to general troubleshooting solutions.</description>
+     <category>Twitch</category>
+  </item>
 
+
+    
 <item>
      <title>Common Chat TTS Troubleshooting Questions Answered</title>
       <link>https://beimgoods.com/blog/troubleshooting-beimgoods-chat-tts/</link>
