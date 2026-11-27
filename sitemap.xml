@@ -71,6 +71,14 @@
     <priority>0.8</priority>
   </url>
 
+
+  <url>
+    <loc>https://beimgoods.com/blog/twitch-popout-chat-tts-troubleshooting-beimgoods/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
   <url>
     <loc>https://beimgoods.com/blog/troubleshooting-beimgoods-chat-tts/</loc>
     <lastmod>2026-11-26</lastmod>
